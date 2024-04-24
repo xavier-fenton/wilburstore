@@ -1,0 +1,8 @@
+<div>
+    
+    {% if product.featured_image %}
+    {{ product.featured_image | image_url: width: 400 | image_tag }}
+    <p><a href="{{ product.url }}">{{ product.title }} </a> </p>
+    <p> {{ product.price | money_with_currency }} </p>
+    {% endif %}
+</div> 

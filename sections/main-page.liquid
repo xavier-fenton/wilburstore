@@ -1,2 +1,5 @@
-<h2>{{ page.title }}</h2>
+
+
+{% render 'title'with {title: page.title } %}
+
 {{ page.content }}

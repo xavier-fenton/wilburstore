@@ -1,0 +1,22 @@
+<div class='grid grid-cols-3 p-2  sticky top-2 '> 
+
+    
+
+    <div class="">
+        <h1><a href="/">{{ shop.name }}</a></h1>
+    </div>
+
+
+    <ul class=' gap-2 '>
+        {% for link in linklists.main-menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div class="flex gap-2 justify-end  ">
+        <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+        <a href="/cart">Check out</a>
+    </div>
+
+    
+</div>

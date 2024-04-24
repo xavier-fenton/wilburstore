@@ -1,12 +1,9 @@
 {% if collection.all_products_count > 0 %}
-{% for product in collection.products %}
-
-{{ product.description }}
-{% if product.featured_image %}
-{{ product.featured_image | image_url: width: 400 | image_tag }}
-<h2><a href="{{ product.url }}">{{ product.title }} </a></h2>
-{% endif %}
-{% endfor %}
+    <div class='grid grid-cols-4 gap-2 p-2'>  
+            {% for product in collection.products %}
+                {% render 'product-card'  with {product: product} %}
+            {% endfor %}
+    </div>
 {% else %}
-<p>Sorry, there are no products in this collection</p>
+    <p>Sorry, there are no products in this collection</p>
 {% endif %}
