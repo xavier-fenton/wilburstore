@@ -21,8 +21,9 @@
     <meta name="viewport" content="width=device-width" />
     {{ content_for_header }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'output.css' | asset_url | stylesheet_tag }}
 </head>
-<body id="{{ page_title | handle }}" class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+<body id="{{ page_title | handle }}" class=" template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
     <div>
         <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
         <a href="/cart">Check out</a>

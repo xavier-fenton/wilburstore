@@ -4,7 +4,7 @@
 {{ product.description }}
 {% if product.featured_image %}
 {{ product.featured_image | image_url: width: 400 | image_tag }}
-<h2><a href="{{ product.url }}">{{ product.title }}</a></h2>
+<h2><a href="{{ product.url }}">{{ product.title }} </a></h2>
 {% endif %}
 {% endfor %}
 {% else %}
