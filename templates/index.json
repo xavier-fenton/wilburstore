@@ -1,10 +1,14 @@
 {
     "sections": {
-        "main": {
-            "type": "hero-image"
-        }
+        "hero_home_hPrMPx": {
+            "type": "hero-home",
+            "settings": {
+              "image_1": "shopify:\/\/shop_images\/385092443_190587863989959_7521087001731185493_n.jpg",
+              "img_text_1": "Image Text"
+            }
+          }
     },
     "order": [
-        "main"
+        "hero_home_hPrMPx"
     ]
 }
