@@ -1,18 +1,18 @@
-<div class=" h-screen">
-  <div class=" {% if section.settings.direction != '' %} direction-{{ section.settings.direction }} {% endif %}">
 
-    <div class="">
+  <div class="h-screen  bg-red-500 w-full">
 
-      <div class="">
+  
+
+      <div class=" relative bg-purple-500 ">
         {{ section.settings.image_1 | img_url: '2048x' | img_tag }}
-        <p class="">{{ section.settings.img_text_1 }}</p>
+        <p class=" absolute top-0">{{ section.settings.img_text_1 }}</p>
       </div>
 
-    </div>
+   
 
   </div>
 
-</div>
+
 
 {% schema %}
 
