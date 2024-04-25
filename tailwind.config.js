@@ -7,6 +7,8 @@ module.exports = {
     "./assets/**/*.{js,ts,jsx,tsx,mdx,liquid}",
     "./theme/**/*.{js,ts,jsx,tsx,mdx,liquid}",
     "./sections/**/*.{js,ts,jsx,tsx,mdx,liquid}",
+    "./snippets/**/*.{js,ts,jsx,tsx,mdx,liquid}",
+    
    
  
   ],},

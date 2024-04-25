@@ -1,5 +1,7 @@
 {% if collection.all_products_count > 0 %}
-    <div class='grid grid-cols-4 gap-2 p-2'>  
+    {% render 'title' with { title:collection.title } %}
+    <div class='grid grid-cols-4 gap-2 p-2 '>  
+    
             {% for product in collection.products %}
                 {% render 'product-card'  with {product: product} %}
             {% endfor %}
