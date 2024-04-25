@@ -1,0 +1,80 @@
+<div class="">
+  <div class=" {% if section.settings.direction != '' %} direction-{{ section.settings.direction }} {% endif %}">
+
+    <div class="">
+
+      <div class="">
+        {{ section.settings.image_1 | img_url: '2048x' | img_tag }}
+        <p class="">{{ section.settings.img_text_1 }}</p>
+      </div>
+
+    </div>
+
+    <div class="">
+
+      <div class="">
+        {{ section.settings.image_2 | img_url: '2048x' | img_tag }}
+        <p class="">{{ section.settings.img_text_2 }}</p>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+</div>
+
+{% schema %}
+
+  {
+    "name": "Main Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image One"
+      },
+      {
+        "type": "text",
+        "id": "img_text_1",
+        "label": "Image One Text"
+      },
+
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image Two"
+      },
+      {
+        "type": "text",
+        "id": "img_text_2",
+        "label": "Image Two Text"
+      }, {
+        "type": "select",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "id": "direction",
+        "label": "Direction",
+        "default": "left"
+      }
+    ],
+
+
+
+    "presets": [
+      {
+        "name": " MainImage",
+        "category": "Content"
+      }
+    ]
+  }
+{% endschema %}
