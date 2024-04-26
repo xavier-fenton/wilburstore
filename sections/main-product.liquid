@@ -1,4 +1,4 @@
-<div class="flex bg-red-400"> 
+<div class="flex  h-screen"> 
     <div class="w-full"> 
 
         {{ product.featured_image | image_url: width: 700 | image_tag }}
@@ -6,10 +6,10 @@
     </div>
 
 
-    <div class="w-full" > 
-        {% render 'title' with { title:product.title } %}
+    <div class="w-full p-2" > 
+      <p>  {{product.title}} </p>
 
-            {{ product.description }}
+           <p> {{ product.description }}</p>
 
         <form action="/cart/add" method="post" enctype="multipart/form-data">
             <select name="id">
