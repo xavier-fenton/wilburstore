@@ -1,17 +1,27 @@
+<div class="flex bg-red-400"> 
+    <div class="w-full"> 
+
+        {{ product.featured_image | image_url: width: 700 | image_tag }}
+
+    </div>
 
 
-{% render 'title' with { title:product.title } %}
-here 
-{{ product.description }}
-<form action="/cart/add" method="post" enctype="multipart/form-data">
-    <select name="id">
-        {% for variant in product.variants %}
-        {% if variant.available == true %}
-        <option value="{{ variant.id }}"> {{ variant.title }} for {{ variant.price | money_with_currency }}</option>
-        {% else %}
-        <option disabled="disabled"> {{ variant.title }} - sold out!</option>
-        {% endif %}
-        {% endfor %}
-    </select>
-    <input type="submit" name="add" id="add" value="Add to Cart" class="button">
-</form>
+    <div class="w-full" > 
+        {% render 'title' with { title:product.title } %}
+
+            {{ product.description }}
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data">
+            <select name="id">
+                {% for variant in product.variants %}
+                {% if variant.available == true %}
+                <option value="{{ variant.id }}"> {{ variant.title }} for {{ variant.price | money_with_currency }}</option>
+                {% else %}
+                <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" name="add" id="add" value="Add to Cart" class="button">
+        </form>
+    </div>
+</div>

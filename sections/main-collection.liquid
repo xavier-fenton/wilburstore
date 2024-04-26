@@ -1,8 +1,6 @@
 {% if collection.all_products_count > 0 %}
     {% render 'title' with { title:collection.title } %}
-    <div class='grid  grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2  p-2 [&>*:nth-child(3n)]:row-span-2  [&>*:nth-child(3n)]:col-span-2
-    [&>*:nth-child(even)]: '>  
-    
+    <div class='grid grid-cols-4 gap-2  p-2 '>  
             {% for product in collection.products %}
                 {% render 'product-card'  with {product: product} %}
             {% endfor %}
