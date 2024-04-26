@@ -1,4 +1,7 @@
-<h2>{{ product.title }}</h2>
+
+
+{% render 'title' with { title:product.title } %}
+here 
 {{ product.description }}
 <form action="/cart/add" method="post" enctype="multipart/form-data">
     <select name="id">

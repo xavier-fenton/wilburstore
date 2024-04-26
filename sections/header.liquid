@@ -1,4 +1,4 @@
-<div class='grid grid-cols-3 p-2 fixed '> 
+<div class='grid grid-cols-3 p-2 fixed  w-[80%] '> 
 
     <div class=' ' >
         <h1 class='bg-white rounded-full w-fit h-fit pl-2 pr-2 mb-1'><a href="/">{{ shop.name }}</a></h1>
@@ -11,10 +11,8 @@
         {% endfor %}
     </ul>
 
-    <div class="flex gap-2 justify-end  ">
-        <a class=' bg-white rounded-full w-fit h-fit pl-2 pr-2 mb-1' href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
-        <a href="/cart">Check out</a>
-    </div>
+  
 
-    
+
+
 </div>

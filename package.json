@@ -2,10 +2,10 @@
   "devDependencies": {
     "tailwindcss": "^3.4.3"
   },
-
   "scripts": {
     "dev": "shopify theme dev --store https://hopeworld-online.myshopify.com/  &&  npx tailwindcss -i ./assets/style.css.liquid -o ./assets/output.css.liquid --watch "
-    
+  },
+  "dependencies": {
+    "liquid-ajax-cart": "^2.1.0"
   }
-
 }

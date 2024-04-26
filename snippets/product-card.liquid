@@ -1,8 +1,13 @@
-<div>
+<div class="flex flex-col">
+<div class="  ">
     
     {% if product.featured_image %}
-    {{ product.featured_image | image_url: width: 400 | image_tag }}
-    <p><a href="{{ product.url }}">{{ product.title }} </a> </p>
+        <div class='rouned-full h-full'>
+    {{ product.featured_image | image_url: width: 700 | image_tag }}
+</div>
+<div>
+    <a href="{{ product.url }}">{{ product.title }} </a>
     <p> {{ product.price | money_with_currency }} </p>
     {% endif %}
-</div> 
+</div>
+ </div>
