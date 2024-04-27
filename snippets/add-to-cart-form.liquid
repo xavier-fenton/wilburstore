@@ -1,0 +1,204 @@
+<!-- 
+current_variant
+-->
+
+{% assign has_multiple_variants = false %}
+{% if product.variants.size > 1 %}
+  {% assign has_multiple_variants = true %}
+{% endif %}
+
+{% assign has_multiple_options = false %}
+{% if product.options.size > 1 %}
+  {% assign has_multiple_options = true %}
+{% endif %}
+
+{% assign can_add_to_cart = false %}
+
+{% if has_multiple_variants == false and product.available %}{% endif %}
+
+
+
+<!-- //---------------------- json get -------------------------------->
+{% if has_multiple_variants %}
+
+  <!-- {% render 'get-variants-with-quantity-json' with product: product %} -->
+
+  {% assign variants_with_quantity_json = product.variants | json %}
+
+  {% unless variants_with_quantity_json contains 'inventory_quantity' %}
+
+    {% for variant in product.variants %}
+      {% assign replace_hook_variant_id = '"id":' | append: variant.id %}
+      {% assign replace_id_plus_inventory = replace_hook_variant_id | append: ',' | append: '"inventory_quantity":' | append:
+       variant.inventory_quantity %}
+
+      {% assign variants_with_quantity_json = variants_with_quantity_json | replace: replace_hook_variant_id
+       , replace_id_plus_inventory %}
+
+    {% endfor %}
+
+  {% endunless %}
+
+
+
+{% endif %}
+
+<!-- //---------------------- json get -------------------------------->
+
+
+
+<form
+  id="add-to-cart-form"
+  action="/cart/add"
+  method="post"
+  enctype="multipart/form-data"
+  data-variants="{{ variants_with_quantity_json | url_param_escape }}">
+
+  {% if has_multiple_options or has_multiple_variants %}
+
+    {% for option in product.options_with_values %}
+
+      {% assign option_name = 'option' | append: option.position %}
+
+      {% if option.name != 'Color' %}
+        {% render 'product-option-row' option: option, option_name: option_name type: 'radio' %}
+      {% else %}
+        {% render 'product-option-row' option: option, option_name: option_name type: 'radio' %}
+      {% endif %}
+
+
+    {% endfor %}
+
+  {% endif %}
+
+  <input
+    type="hidden"
+    name="id"
+    class='js-variant-id'
+    value={{product.variants.first.id}}>
+  <div class="product-price">
+    <p class="grey">
+      Price</p>
+
+    <ul>
+      {% if product.compare_at_price > 0 %}
+
+        <p class="unavailble">
+          {{ product.compare_at_price | money_with_currency }}</p>
+        <p class="js-price" data-default-price="{{ product.price | money }}">
+          {{ product.price | money_with_currency }}
+        </p>
+      {% else %}
+        <p class="js-price" data-default-price="{{ product.price | money }}">{{ current_variant.price | money }}</p>
+      {% endif %}
+    </ul>
+  </div>
+
+  <!-- <label for="Quantity">quanity</label>
+  <input type="number" id="Quanyity" name="quantity" value="1" min="1"> -->{% assign wear = product.metafields.custom.notes | metafield_text %}
+  {% assign shipping = product.metafields.custom.shipping | metafield_text %}
+
+
+  {% if wear != '' %}
+    <div class="metafeild-notes animate__animated animate__slideInLeft ">
+      <p class="warning-title">
+        Notes
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      </p>
+      <p class="warning-text">{{ product.metafields.custom.notes | metafield_text }}</p>
+
+      <div class=" warning-check">
+        <input
+          class="js-warning-check"
+          type="checkbox"
+          id="wear"
+          name="scales">
+
+        <label for="wear">
+          <div class="input-block"></div>
+          I agree to defects
+        </label>
+      </div>
+
+
+    </div>
+
+
+  {% endif %}
+
+  {% if shipping != '' %}
+    <div class="metafeild-notes animate__animated animate__slideInLeft">
+      <p class="warning-title ">
+        Shipping
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      </p>
+      <p class="warning-text">{{ product.metafields.custom.shipping | metafield_text }}</p>
+
+      <div class=" warning-check">
+        <input
+          class="js-warning-check"
+          type="checkbox"
+          id="shipping"
+          name="scales">
+
+        <label for="shipping">
+          <div class="input-block"></div>
+          I agree to shipping</label>
+      </div>
+
+    </div>
+  {% endif %}
+
+
+
+  <button
+    class="hero-btn js-atc"
+    type="submit"
+    name="add"
+    id="add-to-cart-button">
+    Add to cart
+  </button>
+
+</form>
+
+
+
+<script>
+  const check = document.querySelectorAll('.js-warning-check')
+  const add = document.querySelector('.js-atc')
+
+
+  function atcReview() {
+
+
+
+    let pass = false;
+    let count = 0;
+
+    check.forEach(c => {
+      if (!c.checked) {
+
+        add.setAttribute('disabled', '');
+        count += 1;
+
+      } else if (count <= 0) {
+        add.removeAttribute('disabled', '');
+      }
+
+
+    })
+
+
+
+  }
+
+
+
+  check.forEach(single => {
+
+    single.addEventListener('click', atcReview)
+  })
+
+
+  atcReview()
+</script>

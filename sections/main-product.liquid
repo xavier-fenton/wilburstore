@@ -10,6 +10,9 @@
 
 
     <div class="w-full p-2 pt-40 " > 
+
+    {% render 'add-to-cart-form' with current_variant: current_variant  %}
+    
       <p>  {{product.title}} </p>
 
            <p> {{ product.description }}</p>
