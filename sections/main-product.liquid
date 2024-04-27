@@ -1,12 +1,15 @@
 <div class="flex  h-screen"> 
     <div class="w-full"> 
 
-        {{ product.featured_image | image_url: width: 700 | image_tag }}
+    {% for image in product.images %}
 
+        {{ image | image_url: width: 700 | image_tag }}
+
+        {% endfor %}
     </div>
 
 
-    <div class="w-full p-2" > 
+    <div class="w-full p-2 pt-40 " > 
       <p>  {{product.title}} </p>
 
            <p> {{ product.description }}</p>

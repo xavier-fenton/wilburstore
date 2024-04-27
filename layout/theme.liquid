@@ -31,7 +31,7 @@
    
     {{ content_for_layout }}
     {% comment %} Somewhere in layout/theme.liquid {% endcomment %}
-
+    {% section 'footer' %}
 <script type="application/json" data-ajax-cart-initial-state>
     {{ cart | json }}
   </script>

@@ -1,17 +1,20 @@
-<div class='grid grid-cols-3 p-2 fixed  w-[80%] '> 
+<div class='grid grid-cols-3 p-[10px] fixed z-50 w-[50%] '> 
 
-    <div class=' ' >
-        <h1 class='bg-white rounded-full w-fit h-fit pl-2 pr-2 mb-1'><a href="/">{{ shop.name }}</a></h1>
+    <div class=' h-14 w-fit ' >
+        <a href="/"> {{  shop.brand.logo | image_url: width: 700 | image_tag }} </a>
+    
     </div>
 
 
-    <ul class=' gap-2 '>
+    <ul class=' flex gap-[-5px] '>
         {% for link in linklists.main-menu.links %}
-        <li class=' bg-white rounded-full w-fit pl-2 pr-2 mb-1'><a href="{{ link.url }}">{{ link.title }}</a></li>
+        <li class=' bg-white rounded-full w-fit  h-fit pl-2 pr-2 mb-1'><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
     </ul>
 
-  
+    <div class=' flex justify-end ' >
+        <p class='bg-white rounded-full w-fit h-fit pl-2 pr-2 mb-1'><a href="/">Cart [ {{ cart.item_count }} ]</a></p>
+    </div>
 
 
 

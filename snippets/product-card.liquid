@@ -1,15 +1,17 @@
-<div class="flex flex-col   ">
+<div class="flex flex-col   bg-white pt-2 ">
+<a href="{{ product.url }}" >
 <div class="  ">
 
     {% if product.featured_image %}
-        <div class=' h-full'>
+        <div class=' h-full rounded-md'>
             {{ product.featured_image | image_url: width: 700 | image_tag }}
         </div>
     {% endif %}
 </div>
 <div>
-    <a href="{{ product.url }}">{{ product.title }} </a>
+    <p >{{ product.title }} </p>
     <p> {{ product.price | money_with_currency }} </p>
     
 </div>
+</a>
 </div>
