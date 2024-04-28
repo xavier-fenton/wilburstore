@@ -94,6 +94,45 @@ current_variant
     </ul>
   </div>
 
+  <div class="product-option-row">
+
+    <label for="quanity" class="product-option-row-title">
+      Quanity:
+    </label>
+
+    <div class="js-quantity ">
+
+      <p class="js-quantity-minus  quantity-btn">
+        -
+      </p>
+
+      <p
+        type="number"
+        class="js-quantity-total"
+        data-current="1"
+        data-max="{{ current_variant.inventory_quantity }} ">
+        1
+      </p>
+
+      <p class="js-quantity-add quantity-btn ">
+        +
+      </p>
+
+
+
+    </div>
+
+  </div>
+
+  <!-- hidden -------------- -->
+
+  <input
+  type="hidden"
+    class="js-hidden-quantity"
+    name="quantity"
+    value="1">
+
+
 
   <button
     class="hero-btn js-atc bg-red-500"

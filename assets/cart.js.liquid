@@ -1,224 +1,191 @@
+$(document).ready(function() {
 
 
-
-  // old js 
-
-  $(document).ready(function() {
-
-
-    console.log('jquery logs'); 
-
-    // Select the form and selector
-
-
-    let 
-    addToCartFormSelector = '#add-to-cart-form',
+  let 
+    addToCartFormSelector = '#add-to-cart-form';
     productOptionsSelector = addToCartFormSelector + ' [name*=option]';
-    
-      let productForm = {
-    
-       
-
-        // onProductOptionChanged: function (event){
-    
-        //   let
-        //    elForm = $(this).closest(addToCartFormSelector),
-        //     selectedVariant = productForm.getActiveVariant(elForm);
-        //    elForm.trigger('form:change',[ selectedVariant ])
-        //     console.log(elForm);
-    
-        // },
-
-        onProductOptionChanged: function (event){
-           
-            let elForm = event.target.closest(addToCartFormSelector);
-            let selectedVariant = productForm.getActiveVariant(elForm);
-            
-                elForm.dispatchEvent(new Event('form:change', { bubbles: true, detail: selectedVariant }));
-                
-        },
-
-
-        getActiveVariant: function(elForm){
-    
-        
-          let variants = JSON.parse(decodeURIComponent(elForm.dataset.variants));
-         
-        //   let formData = elForm.serializeArray();
-          
-          let formData = new FormData(elForm);
-            let serializedData = [];
-
-            formData.forEach(function(key, value) {
-                console.log( `${value} ${key}`);
-                serializedData.push({ name: key, value: value });
-              });
-
-              console.log(serializedData)
-
-         
-          let formOptions= {
-              option1: null,
-              option2: null,
-              option3: null
-            };
-            let selectedVariant = null;
-            let selectedVariantMax = null;
-
-
-            $.each(serializedData, function(index, item) {
-              if(item.name.indexOf('option') !== -1 ){
-                formOptions[item.name]= item.value;
-              }
-            });
-
-            $.each(variants, function(index, variant){
-              // left off here, the loop isnt fireing as the cooption1ndition isnt being met
-              // form options not updating 
-                console.log(`${variant.option1} === ${formOptions.option1}`); 
-
-                if( variant.option1 === formOptions.option1 && variant.option2 === formOptions.option2 && variant.option3 === formOptions.option3 ){
-                  selectedVariant = variant;
-                  console.log(here); // th
-                  selectedVariantMax = variant.inventory_quantity;
-                  
-                  return false;
-                }
-            });
-
-            console.log(formOptions)
-            console.log(selectedVariant)
-            return selectedVariant;
-           
-           
-
-        }, 
-    
-        validate: function(event, selectedVariant ){
-          let   
-           elForm = $(this),
-            hasVariant = selectedVariant !== null,
-            canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0
-            $id =elForm.find('.js-variant-id')
-            $quantity = document.querySelector( '.js-quantity-total' )
-            $addToCartButton =elForm.find('#add-to-cart-button')
-            $maxQuantity = selectedVariant.inventory_quantity 
-          
-
-            if(canAddToCart){
-              $id.val(selectedVariant.id);
-              $addToCartButton.prop('disabled', false );
-              $quantity.dataset.max = $maxQuantity;
-
-            }else{
-              $id.val('')
-              $addToCartButton.prop('disabled', true );
-            }
-
-           
-        },
-    
-        init: function(){
-        
-           $(document).on('change', productOptionsSelector, productForm.onProductOptionChanged);
-           $(document).on('form:change', addToCartFormSelector, productForm.validate)
   
-
-        }
-    
-      };
-    
-    
-      productForm.init()
-
-
-
-      // Quanity 
-
-      
-
-      let plus = document.querySelector( '.js-quantity-add');
-      let minus = document.querySelector( '.js-quantity-minus');
-      let quantity = document.querySelector( '.js-quantity-total');
-      let quantityHidden = document.querySelector( '.js-hidden-quantity');
-      let currentCount = 1;
-
-      let add = () => {
-        let max = quantity.dataset.max;
-
-        if( currentCount < max ){
-          
-          currentCount += 1
-          quantity.dataset.current = currentCount;
-          quantity.innerHTML = currentCount;
-          quantity.innerHTML = currentCount;
-          quantityHidden.value = currentCount;
-          console.log( quantityHidden )
-        }
-
-        console.log( currentCount )
-
-      }
-
-
-      let reduce = () => {
-
-        console.log( currentCount )
- 
-        let max = quantity.dataset.max;
-
-        if( currentCount > 1 ){
-         
-          currentCount = currentCount - 1
-          quantity.dataset.current = currentCount;
-          quantity.innerHTML = currentCount;
-          quantity.innerHTML = currentCount;
-          quantityHidden.value = currentCount;
-          console.log( quantityHidden )
-        } 
-
-      }
-
-      if( plus) {
-        plus.addEventListener( 'click', add )
-      }
-      
-      if( minus ){
-        minus.addEventListener( 'click', reduce)
-      }
-      
- 
-
+    let productForm = {
+  
      
 
+      onProductOptionChanged: function (event){
+  
+        let
+          $form = $(this).closest(addToCartFormSelector),
+          selectedVariant = productForm.getActiveVariant($form);
+          $form.trigger('form:change',[ selectedVariant ])
 
+      },
 
-      // accoridan 
+      getActiveVariant: function($form){
+  
+        let 
+          variants = JSON.parse(decodeURIComponent($form.attr('data-variants')));
+          formData = $form.serializeArray();
+          formOptions= {
+            option1: null,
+            option2: null,
+            option3: null
+          },
+          selectedVariant = null;
+          selectedVariantMax = null;
+        
 
-      // console.log( 'accord' )
+          console.log(formData)
 
-      // let a = document.querySelectorAll('.accordian-title')
-
-      // console.log(a)
-
-      // a.forEach( (i) => {
           
+
+          $.each(formData, function(index, item) {
+            if(item.name.indexOf('option') !== -1 ){
+              formOptions[item.name]= item.value;
+            }
+          });
+
+          $.each(variants, function(index, variant){
+              if( variant.option1 === formOptions.option1 && variant.option2 === formOptions.option2 && variant.option3 === formOptions.option3 ){
+                selectedVariant = variant;
+                selectedVariantMax = variant.inventory_quantity;
+                
+                return false;
+              }
+          });
+
+          console.log(selectedVariant)
+          console.log(formOptions)
+          return selectedVariant;
+         
+         
+
+      }, 
+  
+      validate: function(event, selectedVariant ){
+        let   
+          $form = $(this),
+          hasVariant = selectedVariant !== null,
+          canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0
+          $id = $form.find('.js-variant-id')
+          $quantity = document.querySelector( '.js-quantity-total' )
+          $addToCartButton = $form.find('#add-to-cart-button')
+          $maxQuantity = selectedVariant.inventory_quantity
+         
+          if(canAddToCart){
+            $id.val(selectedVariant.id)
+            $addToCartButton.prop('disabled', false );
+            $quantity.dataset.max = $maxQuantity;
+
+          }else{
+            $id.val('')
+            $addToCartButton.prop('disabled', true );
+          }
+
+         
+      },
+  
+      init: function(){
+      
+         $(document).on('change', productOptionsSelector, productForm.onProductOptionChanged);
+         $(document).on('form:change', addToCartFormSelector, productForm.validate)
+
+
+      }
+  
+    };
+  
+  
+    productForm.init()
+
+
+
+    // Quanity 
+
+    
+
+    let plus = document.querySelector( '.js-quantity-add');
+    let minus = document.querySelector( '.js-quantity-minus');
+    let quantity = document.querySelector( '.js-quantity-total');
+    let quantityHidden = document.querySelector( '.js-hidden-quantity');
+    let currentCount = 1;
+
+    let add = () => {
+      let max = quantity.dataset.max;
+
+    
+
+      if( currentCount < max ){
+        
+        currentCount += 1
+        quantity.dataset.current = currentCount;
+        quantity.innerHTML = currentCount;
+        quantity.innerHTML = currentCount;
+        quantityHidden.value = currentCount;
+        console.log( quantityHidden )
+      }
+
+      console.log( currentCount )
+
+    }
+
+
+    let reduce = () => {
+
+      console.log( currentCount )
+
+      let max = quantity.dataset.max;
+
+      if( currentCount > 1 ){
        
-      
-      //    i.addEventListener('click', (i) => {
+        currentCount = currentCount - 1
+        quantity.dataset.current = currentCount;
+        quantity.innerHTML = currentCount;
+        quantity.innerHTML = currentCount;
+        quantityHidden.value = currentCount;
+        console.log( quantityHidden )
+      } 
 
-      //     console.log( ' click ')
-      //     console.log( i.target.parentNode.classList )
+    }
 
-      //     if( i.target.parentNode.classList.contains('accordian-open')){
-      //       i.target.parentNode.classList.remove('accordian-open')
-      //     }else{
-      //       i.target.parentNode.classList.add('accordian-open')
-      //     }
+    if( plus) {
+      plus.addEventListener( 'click', add )
+    }
+    
+    if( minus ){
+      minus.addEventListener( 'click', reduce)
+    }
+    
 
-      //    })
-      
 
-      // } )
+   
 
-    })
+
+
+    // accoridan 
+
+    console.log( 'accord' )
+
+    let a = document.querySelectorAll('.accordian-title')
+
+    console.log(a)
+
+    a.forEach( (i) => {
+        
+     
+       i.addEventListener('click', (i) => {
+
+        console.log( ' click ')
+        console.log( i.target.parentNode.classList )
+
+        if( i.target.parentNode.classList.contains('accordian-open')){
+          i.target.parentNode.classList.remove('accordian-open')
+        }else{
+          i.target.parentNode.classList.add('accordian-open')
+        }
+
+       })
+    
+
+    } )
+
+  })
+
+  // btn
