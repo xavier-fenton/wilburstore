@@ -7,6 +7,7 @@
         {% assign line_item_index = forloop.index %}
        
         <div class='card relative bg-white overflow-hidden  flex rounded-sm  bg-opacity-65'>
+          <p>{{ line_item.title }}</p>
             {{ line_item.image | image_url: width: 80 | image_tag }}
 
             <div class='card p-2  ' >

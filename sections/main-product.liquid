@@ -1,3 +1,5 @@
+
+
 <div class="flex  h-screen"> 
     <div class="w-full"> 
 
@@ -11,23 +13,12 @@
 
     <div class="w-full p-2 pt-40 " > 
 
+    <p>  {{product.title}} </p>
+
+    <p> {{ product.description }}</p>
+
     {% render 'add-to-cart-form' with current_variant: current_variant  %}
     
-      <p>  {{product.title}} </p>
 
-           <p> {{ product.description }}</p>
-
-        <form action="/cart/add" method="post" enctype="multipart/form-data">
-            <select name="id">
-                {% for variant in product.variants %}
-                {% if variant.available == true %}
-                <option value="{{ variant.id }}"> {{ variant.title }} for {{ variant.price | money_with_currency }}</option>
-                {% else %}
-                <option disabled="disabled"> {{ variant.title }} - sold out!</option>
-                {% endif %}
-                {% endfor %}
-            </select>
-            <input type="submit" name="add" id="add" value="Add to Cart" class="button">
-        </form>
     </div>
 </div>
