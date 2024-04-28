@@ -23,6 +23,9 @@ $(document).ready(function() {
         let 
           variants = JSON.parse(decodeURIComponent($form.attr('data-variants')));
           formData = $form.serializeArray();
+
+
+
           formOptions= {
             option1: null,
             option2: null,
@@ -51,8 +54,7 @@ $(document).ready(function() {
               }
           });
 
-          console.log(selectedVariant)
-          console.log(formOptions)
+         
           return selectedVariant;
          
          
@@ -122,14 +124,14 @@ $(document).ready(function() {
         console.log( quantityHidden )
       }
 
-      console.log( currentCount )
+    
 
     }
 
 
     let reduce = () => {
 
-      console.log( currentCount )
+
 
       let max = quantity.dataset.max;
 
@@ -140,7 +142,7 @@ $(document).ready(function() {
         quantity.innerHTML = currentCount;
         quantity.innerHTML = currentCount;
         quantityHidden.value = currentCount;
-        console.log( quantityHidden )
+
       } 
 
     }
