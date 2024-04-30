@@ -1,13 +1,11 @@
 $(document).ready(function() {
 
 
-  let 
+    let 
     addToCartFormSelector = '#add-to-cart-form';
     productOptionsSelector = addToCartFormSelector + ' [name*=option]';
   
     let productForm = {
-  
-     
 
       onProductOptionChanged: function (event){
   
@@ -18,14 +16,13 @@ $(document).ready(function() {
 
       },
 
-      getActiveVariant: function($form){
+      getActiveVariant: function($form, newForm){
   
         let 
+          formEl = document.querySelector('#add-to-cart-form')
           variants = JSON.parse(decodeURIComponent($form.attr('data-variants')));
-          formData = $form.serializeArray();
-
-
-
+          // formInlineData = $form.serializeArray(); // removed j query 
+          formInlineData = new URLSearchParams(Array.from(new FormData(formEl))).toString()
           formOptions= {
             option1: null,
             option2: null,
@@ -33,52 +30,61 @@ $(document).ready(function() {
           },
           selectedVariant = null;
           selectedVariantMax = null;
-        
 
-          console.log(formData)
+          // Initialize an empty array to store objects
+          let objectsArray = [];
+          let keyValuePairs = formInlineData.split("&");
+          // Iterate over the key-value pairs and create objects
+          keyValuePairs.forEach(pair => {
+              const [key, value] = pair.split("=");
+              const obj = { 
+                name: key,   // Add name property
+                value: value // Add value property
+            };
+              objectsArray.push(obj);
+          });
 
-          
+          console.log(formInlineData);
+          console.log(objectsArray);
 
-          $.each(formData, function(index, item) {
-            if(item.name.indexOf('option') !== -1 ){
-              formOptions[item.name]= item.value;
+          objectsArray.forEach(function(item, index) {
+            if (item.name.indexOf('option') !== -1) {
+                formOptions[item.name] = item.value;
             }
-          });
+        });
 
-          $.each(variants, function(index, variant){
-              if( variant.option1 === formOptions.option1 && variant.option2 === formOptions.option2 && variant.option3 === formOptions.option3 ){
-                selectedVariant = variant;
-                selectedVariantMax = variant.inventory_quantity;
-                
-                return false;
-              }
-          });
+        variants.forEach(function(variant) {
+          if (variant.option1 === formOptions.option1 && variant.option2 === formOptions.option2 && variant.option3 === formOptions.option3) {
+              selectedVariant = variant;
+              selectedVariantMax = variant.inventory_quantity;
+              return false; // Exiting the loop early since the variant is found
+          }
+      });
 
          
           return selectedVariant;
-         
-         
-
+        
       }, 
   
       validate: function(event, selectedVariant ){
         let   
-          $form = $(this),
+          $form = this,
           hasVariant = selectedVariant !== null,
           canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0
-          $id = $form.find('.js-variant-id')
+        
+          $id = $form.querySelector('.js-variant-id')
           $quantity = document.querySelector( '.js-quantity-total' )
-          $addToCartButton = $form.find('#add-to-cart-button')
+          $addToCartButton = $form.querySelector('#add-to-cart-button')
           $maxQuantity = selectedVariant.inventory_quantity
          
           if(canAddToCart){
-            $id.val(selectedVariant.id)
-            $addToCartButton.prop('disabled', false );
+            $id.value=selectedVariant.id,
+            $addToCartButton.disabled = false;
             $quantity.dataset.max = $maxQuantity;
 
           }else{
             $id.val('')
-            $addToCartButton.prop('disabled', true );
+            $addToCartButton.disabled = true;
           }
 
          
