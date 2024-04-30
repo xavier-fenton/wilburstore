@@ -82,18 +82,10 @@ document.addEventListener('DOMContentLoaded',function () {
     },
 
     init: function () {
-      $(document).on(
-        "change",
-        productOptionsSelector,
-        productForm.onProductOptionChanged
-      );
-      $(document).on(
-        "form:change",
-        addToCartFormSelector,
-        productForm.validate
-      );
-    },
-  };
+      $(document).on( "change", productOptionsSelector,productForm.onProductOptionChanged ); 
+      $(document).on( "form:change", addToCartFormSelector, productForm.validate );
+  }
+}
 
   productForm.init();
 
@@ -106,8 +98,8 @@ document.addEventListener('DOMContentLoaded',function () {
   let currentCount = 1;
 
   let add = () => {
-    let max = quantity.dataset.max;
 
+    let max = quantity.dataset.max;
     if (currentCount < max) {
       currentCount += 1;
       quantity.dataset.current = currentCount;
