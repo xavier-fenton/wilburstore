@@ -1,28 +1,35 @@
 document.addEventListener('DOMContentLoaded',function () {
-  let addToCartFormSelector = "#add-to-cart-form";
-  productOptionsSelector = addToCartFormSelector + " [name*=option]";
 
+  let addToCartFormSelector = "#add-to-cart-form",
+     productOptionsSelector = addToCartFormSelector + " [name*=option]";
+  
   let productForm = {
+
     onProductOptionChanged: function (event) {
-      // this is the point this goes weird
+   
       let $form = $(this).closest(addToCartFormSelector),
-        selectedVariant = productForm.getActiveVariant($form);
+      selectedVariant = productForm.getActiveVariant($form);
       $form.trigger("form:change", [selectedVariant]);
+
     },
 
     getActiveVariant: function ($form, newForm) {
-      let formEl = document.querySelector("#add-to-cart-form");
-      variants = JSON.parse(decodeURIComponent($form.attr("data-variants")));
+      let formEl = document.querySelector("#add-to-cart-form"),
+      variants = JSON.parse(decodeURIComponent(formEl.dataset.variants));
+    
       // formInlineData = $form.serializeArray(); // removed j query
+     
       formInlineData = new URLSearchParams(
         Array.from(new FormData(formEl))
-      ).toString();
-      (formOptions = {
+      ).toString(),
+
+      formOptions = {
         option1: null,
         option2: null,
         option3: null,
-      }),
-        (selectedVariant = null);
+      },
+
+      selectedVariant = null,
       selectedVariantMax = null;
 
       // Initialize an empty array to store objects
@@ -38,7 +45,7 @@ document.addEventListener('DOMContentLoaded',function () {
         objectsArray.push(obj);
       });
 
-      console.log(formInlineData);
+      console.log(formOptions);
       console.log(objectsArray);
 
       objectsArray.forEach(function (item, index) {
@@ -62,29 +69,44 @@ document.addEventListener('DOMContentLoaded',function () {
       return selectedVariant;
     },
 
-    validate: function (event, selectedVariant) {
-      let $form = this,
+    validate: function (event) {
+
+      console.log('validate 2.12')
+     
+
+      let $form = this;
         hasVariant = selectedVariant !== null,
-        canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0;
+        selectedVariant = productForm.getActiveVariant($form);
+        canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0,
+        $id = document.querySelector(".js-variant-id"),
+        $quantity = document.querySelector(".js-quantity-total"),
+        $addToCartButton = document.querySelector("#add-to-cart-button"),
+        $maxQuantity = selectedVariant.inventory_quantity;
 
-      $id = $form.querySelector(".js-variant-id");
-      $quantity = document.querySelector(".js-quantity-total");
-      $addToCartButton = $form.querySelector("#add-to-cart-button");
-      $maxQuantity = selectedVariant.inventory_quantity;
-
+    
       if (canAddToCart) {
-        ($id.value = selectedVariant.id), ($addToCartButton.disabled = false);
+        $id.value = selectedVariant.id;
+        $addToCartButton.disabled = false;
         $quantity.dataset.max = $maxQuantity;
       } else {
-        $id.val("");
-        $addToCartButton.disabled = true;
+        $id.value = 'dick'; 
+        $addToCartButton.disabled = true; 
       }
     },
 
     init: function () {
-      $(document).on( "change", productOptionsSelector,productForm.onProductOptionChanged ); 
-      $(document).on( "form:change", addToCartFormSelector, productForm.validate );
-  }
+ 
+      // $(document).on( "change", productOptionsSelector, productForm.onProductOptionChanged ); 
+      // $(document).on('form:change', addToCartFormSelector, productForm.validate)    
+
+      console.log('init 1.2')
+      document.addEventListener('change', productForm.onProductOptionChanged )
+      document.addEventListener('change', function(event) {
+       productForm.validate( event);
+    });
+
+    }
+
 }
 
   productForm.init();
@@ -131,8 +153,6 @@ document.addEventListener('DOMContentLoaded',function () {
   }
 
   // accoridan
-
-
 
   let a = document.querySelectorAll(".accordian-title");
 
