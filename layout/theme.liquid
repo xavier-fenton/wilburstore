@@ -22,7 +22,7 @@
     {{ content_for_header }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
     {{ 'output.css' | asset_url | stylesheet_tag }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer ></script>
+
     
 </head>
 <body id="{{ page_title | handle }}" class=" template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >

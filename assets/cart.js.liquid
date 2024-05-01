@@ -6,10 +6,15 @@ document.addEventListener('DOMContentLoaded',function () {
   let productForm = {
 
     onProductOptionChanged: function (event) {
+
+      console.log('change 1.0');
    
-      let $form = $(this).closest(addToCartFormSelector),
-      selectedVariant = productForm.getActiveVariant($form);
-      $form.trigger("form:change", [selectedVariant]);
+      let $form = document.querySelector(addToCartFormSelector);
+      let selectedVariant = productForm.getActiveVariant($form);
+      
+      var formChangeEvent = new CustomEvent('form:change', { detail: selectedVariant });
+        $form.dispatchEvent(formChangeEvent);
+
 
     },
 
@@ -71,12 +76,13 @@ document.addEventListener('DOMContentLoaded',function () {
 
     validate: function (event) {
 
-      console.log('validate 2.12')
+      console.log('validate 2.13')
      
 
       let $form = this;
+       
+        selectedVariant = productForm.getActiveVariant($form),
         hasVariant = selectedVariant !== null,
-        selectedVariant = productForm.getActiveVariant($form);
         canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0,
         $id = document.querySelector(".js-variant-id"),
         $quantity = document.querySelector(".js-quantity-total"),
