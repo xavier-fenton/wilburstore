@@ -27,13 +27,13 @@
 </head>
 <body id="{{ page_title | handle }}" class=" template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
    
-
-    {% section 'header' %}
     {% section 'live-cart' %}
-   
-    {{ content_for_layout }}
-
-    {% section 'footer' %}
+    <div class="js main">
+        {% section 'header' %}
+        
+        {{ content_for_layout }}
+        {% section 'footer' %}
+    </div>
     <script type="application/json" data-ajax-cart-initial-state>
         {{ cart | json }}
     </script>

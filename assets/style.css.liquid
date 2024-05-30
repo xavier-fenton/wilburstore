@@ -38,3 +38,89 @@ img{
     object-fit: cover;
     max-height: calc(120vh);
 }
+
+/* cart */
+
+
+.my-cart{
+  position: fixed;
+  right: -1000px;
+  top: 7px;
+  cursor: pointer;
+  width: calc( 400px  );
+  height: calc( var(--winHeight) - 14px);
+  transition: ease all 0.3s ;
+  overflow: hidden;
+
+}
+
+
+ 
+.cart-open{
+
+ width: calc( 400px  );
+  height: calc( var(--winHeight) - 14px);
+  overflow: scroll;
+  transition: right 0.3s;
+  right: 7px;
+ 
+}
+
+@media only screen and (max-width: 768px) {
+
+  .my-cart{
+    position: fixed;
+    right: 0px;
+    top: 100%;
+    left: 0px;
+    cursor: pointer;
+    width: calc( 100vw  );
+    height: calc(var(--winHeight) );
+    overflow: hidden;
+    transition: top 0.3s;
+   
+  }
+
+    
+  .cart-open{
+
+    width: calc( 100vw  );
+    height: calc(var(--winHeight) - 40px );
+    overflow: scroll;
+ 
+    right: 0px;
+    top: 40px;
+ 
+
+  }
+}
+
+
+ajax-cart-product-form[processing]:before {
+  content: 'Loading';
+  display: block;
+}
+
+/* Make the "Add to cart" button look visually disabled while loading */
+ajax-cart-product-form[processing] [type="submit"] {
+  opacity: .7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.my-cart__items {
+  opacity: 1;
+  transition: opacity .2s;
+}
+
+/* Make the cart content look visually disabled while updating */
+html.js-ajax-cart-processing .my-cart__items {
+  opacity: .7;
+}
+
+/* Show a loading indicator */
+html.js-ajax-cart-processing .my-cart__items:before {
+  content: 'Loading';
+  display: block;
+}
+
