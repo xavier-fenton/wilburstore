@@ -1,20 +1,25 @@
-<div class='grid grid-cols-3 p-[10px] fixed z-50 w-[50%] '> 
+{% comment %} <div class='grid grid-cols-3 p-[10px] fixed z-50 w-[50%] '>  {% endcomment %}
+<div class='flex p-[10px] z-50 w-[50%] justify-between'> 
 
+{% comment %} 
     <div class=' h-14 w-fit ' >
-        <a href="/"> {{  shop.brand.logo | image_url: width: 700 | image_tag }} </a>
+         <a href="/"> {{  shop.brand.logo | image_url: width: 700 | image_tag }} </a> 
     
-    </div>
+    </div> 
+  {% endcomment %}
 
 
-    <ul class=' flex gap-[-5px] '>
+    <ul class=' flex gap-[-5px]'>
         {% for link in linklists.main-menu.links %}
         <li class=' bg-white rounded-full w-fit  h-fit pl-2 pr-2 mb-1'><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
-    </ul>
+        </ul>
+        <div>Wilbur Hsu</div>
 
-    <div class=' flex justify-end ' >
+
+    {% comment %} <div class=' flex justify-end ' >
         <p class='bg-white rounded-full w-fit h-fit pl-2 pr-2 mb-1'><a href="/">Cart [ {{ cart.item_count }} ]</a></p>
-    </div>
+    </div> {% endcomment %}
 
 
 

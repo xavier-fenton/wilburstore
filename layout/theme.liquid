@@ -27,9 +27,10 @@
 </head>
 <body id="{{ page_title | handle }}" class=" template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
    
-
+<div class="bg-gray-400">
     {% section 'header' %}
-    {% section 'live-cart' %}
+    </div>
+    {% comment %} {% section 'live-cart' %} {% endcomment %}
    
     {{ content_for_layout }}
     {% comment %} Somewhere in layout/theme.liquid {% endcomment %}
