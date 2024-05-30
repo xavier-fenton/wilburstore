@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded',function () {
         $addToCartButton.disabled = false;
         $quantity.dataset.max = $maxQuantity;
       } else {
-        $id.value = 'dick'; 
+        $id.value = 'null'; 
         $addToCartButton.disabled = true; 
       }
     },
@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded',function () {
   productForm.init();
 
   // Quanity
+
+  
 
   let plus = document.querySelector(".js-quantity-add");
   let minus = document.querySelector(".js-quantity-minus");
@@ -158,24 +160,82 @@ document.addEventListener('DOMContentLoaded',function () {
     minus.addEventListener("click", reduce);
   }
 
-  // accoridan
 
-  let a = document.querySelectorAll(".accordian-title");
-
-  console.log(a);
-
-  a.forEach((i) => {
-    i.addEventListener("click", (i) => {
-      console.log(" click ");
-      console.log(i.target.parentNode.classList);
-
-      if (i.target.parentNode.classList.contains("accordian-open")) {
-        i.target.parentNode.classList.remove("accordian-open");
-      } else {
-        i.target.parentNode.classList.add("accordian-open");
-      }
-    });
-  });
 });
+
+document.addEventListener('liquid-ajax-cart:request-end', event => {
+  const {requestState} = event.detail;
+
+  // If the "add to cart" request is successful
+  if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+
+    // Add the CSS class to the "body" tag
+    document.body.classList.add('js-show-ajax-cart');
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded',function () {
+
+  let cart = document.querySelector('.my-cart');
+  let bodyWrap = document.querySelectorAll('.body-wrap')
+  let cartBtns = document.querySelectorAll('.cart-btn');
+  let cartState = false ;
+
+  let winHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--winHeight', winHeight + 'px');
+
+document.addEventListener('resize', ()=> {
+  winHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--winHeight', winHeight + 'px');
+})
+
+
+
+   console.log(cartBtns)
+
+     let closeCart= ()=> {
+      
+      cart.classList.remove('cart-open')
+      document.body.classList.remove('dim')
+      
+    };
+
+    let openCart= ()=> {
+  
+      cart.classList.add('cart-open')
+      document.body.classList.add('dim')
+
+    };
+
+
+
+    cartBtns.forEach( (i) => {
+      i.addEventListener('mousedown', ()=> {  
+
+        
+        
+        if(cartState){
+   
+
+          cartState = false;
+          closeCart();
+          console.log(cart)
+        
+          
+        } else { 
+        
+          cartState = true;
+          openCart();
+          console.log(cart)
+
+        }
+  
+      });
+  
+    })
+
+    
+    })
 
 // btn
