@@ -1,4 +1,4 @@
-# Using the latest of Riley Karls Shopify Starter Kit 
+# Using the latest of Riley Karls Shopify Starter Kit (From 30 May 24)
 ## Project uses Shopify Liquid and Tailwind CSS
 ## Useful CMDs
 <ul>
