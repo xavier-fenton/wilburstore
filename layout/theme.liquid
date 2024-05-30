@@ -32,11 +32,17 @@
     {% section 'live-cart' %}
    
     {{ content_for_layout }}
-    {% comment %} Somewhere in layout/theme.liquid {% endcomment %}
+
     {% section 'footer' %}
-<script type="application/json" data-ajax-cart-initial-state>
-    {{ cart | json }}
-  </script>
+    <script type="application/json" data-ajax-cart-initial-state>
+        {{ cart | json }}
+    </script>
+
+    <script type="module">
+        import '{{ "liquid-ajax-cart-v2.1.0.js" | asset_url }}';
+    </script>
+
+
 
 
     <script src="{{ 'shop.js' | asset_url }}" defer></script>
