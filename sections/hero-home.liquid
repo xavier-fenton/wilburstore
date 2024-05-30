@@ -1,40 +1,6 @@
-
-  
-
-  
-
-      <div class="asolute top-1 h-screen left-1 right-1 overflow-hidden">
-        {{ section.settings.image_1 | img_url: '2048x' | img_tag }}
-        {% comment %} <p class=" absolute left-0 bottom-0">{{ section.settings.img_text_1 }}</p> {% endcomment %}
-      </div>
-
-   
-
-
-
-
-{% schema %}
-
-  {
-    "name": "Main Image",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "image_1",
-        "label": "Image One"
-      },
-      {
-        "type": "text",
-        "id": "img_text_1",
-        "label": "Image One Text"
-      }
-    ],
-
-    "presets": [
-      {
-        "name": " MainImage",
-        "category": "Content"
-      }
-    ]
-  }
-{% endschema %}
+<div class='grid grid-flow-dense grid-cols-4 gap-2  p-2 [&>*:nth-child(2n)]:col-span-2 row-span-2 '>
+  {% for collection in collections %}
+    {{- collection.title | link_to: collection.url }}
+    {{ collection.featured_image | image_url: width: 700 | image_tag }}
+  {% endfor %}
+</div>

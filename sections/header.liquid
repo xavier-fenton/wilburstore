@@ -1,26 +1,15 @@
-{% comment %} <div class='grid grid-cols-3 p-[10px] fixed z-50 w-[50%] '>  {% endcomment %}
-<div class='flex p-[10px] z-50 w-[50%] justify-between'> 
-
-{% comment %} 
-    <div class=' h-14 w-fit ' >
-         <a href="/"> {{  shop.brand.logo | image_url: width: 700 | image_tag }} </a> 
-    
-    </div> 
-  {% endcomment %}
+<div class='bg-[#fffdfd] grid grid-cols-3 p-[10px] px-[40px] fixed z-50 w-[100%] items-center uppercase'>
 
 
-    <ul class=' flex gap-[-5px]'>
-        {% for link in linklists.main-menu.links %}
-        <li class=' bg-white rounded-full w-fit  h-fit pl-2 pr-2 mb-1'><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-        </ul>
-        <div>Wilbur Hsu</div>
+  <div class="flex gap-[5px]  uppercase">
+    {% for link in linklists['main-menu'].links %}
+      <div class="w-fit  h-fit pl-2 pr-2">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </div>
+    {% endfor %}
+  </div>
 
-
-    {% comment %} <div class=' flex justify-end ' >
-        <p class='bg-white rounded-full w-fit h-fit pl-2 pr-2 mb-1'><a href="/">Cart [ {{ cart.item_count }} ]</a></p>
-    </div> {% endcomment %}
-
-
+  <div class="font-['Roboto'] flex items-center justify-center">Wilbur Hsu</div>
+  <div class="font-['Roboto'] flex  justify-end">Cart</div>
 
 </div>
