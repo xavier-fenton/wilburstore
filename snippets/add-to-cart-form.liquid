@@ -25,7 +25,6 @@ current_variant
 
   {% assign variants_with_quantity_json = product.variants | json %}
   {% unless variants_with_quantity_json contains 'inventory_quantity' %}
-  multi
     {% for variant in product.variants %}
       {% assign replace_hook_variant_id = '"id":' | append: variant.id %}
       {% assign replace_id_plus_inventory = replace_hook_variant_id | append: ',' | append: '"inventory_quantity":' | append:
@@ -45,10 +44,9 @@ current_variant
 <!-- //---------------------- json get -------------------------------->
 
 
-
 <form
   class=''
-  id="add-to-cart-form"no
+  id="add-to-cart-form"
   action="/cart/add"
   method="post"
   enctype="multipart/form-data"
@@ -74,34 +72,36 @@ current_variant
   <input
     type=""
     name="id"
-    class='js-variant-id'
+    class='js-variant-id hidden'
     value={{product.variants.first.id}}>
-  <div class="product-price">
-    <p class="grey">
-      Price</p>
+  <div class=" PRICE flex gap-2  ">
+    <p class=" ">
+      Price
+    </p>
 
-    <ul>
+    
       {% if product.compare_at_price > 0 %}
 
-        <p class="unavailble">
-          {{ product.compare_at_price | money_with_currency }}</p>
-        <p class="js-price" data-default-price="{{ product.price | money }}">
+        <p class="unavailble"> {{ product.compare_at_price | money_with_currency }}</p>
+        <p class="js-price opacity-40 " data-default-price="{{ product.price | money }}">
           {{ product.price | money_with_currency }}
         </p>
       {% else %}
-        <p class="js-price" data-default-price="{{ product.price | money }}">{{ current_variant.price | money }}</p>
+
+        <p class="js-price opacity-40 " data-default-price="{{ product.price | money }}">{{ product.price | money }}</p>
       {% endif %}
-    </ul>
+  
   </div>
 
-  <div class="product-option-row">
+  <div class="QUANITY flex gap-4 ">
+
+    DONT WORK - REF Live cart TO FIX 
 
     <label for="quanity" class="product-option-row-title">
-      Quanity:
+      <p> Quanity: </p>    
     </label>
 
-    <div class="js-quantity ">
-
+    <div class="js-quantity flex gap-2 ">
       <p class="js-quantity-minus  quantity-btn">
         -
       </p>
@@ -124,25 +124,36 @@ current_variant
 
   </div>
 
+
+
+
+    <p data-ajax-cart-errors="form" class=' text-orange-500 font-bold text-center  2' >
+
+      </p>
+
+
   <!-- hidden -------------- -->
 
   <input
   type="hidden"
     class="js-hidden-quantity"
     name="quantity"
-    value="1">
+    value="1">  
 
 
 
-  <button
-    class="hero-btn js-atc bg-red-500"
-    type="submit"
-    name="add"
-    id="add-to-cart-button">
-    Add to cart
-  </button>
+
+
 
 </form>
+
+
+
+
+
+
+
+
 
 
 
