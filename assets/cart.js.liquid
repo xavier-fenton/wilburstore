@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     onProductOptionChanged: function (event) {
 
-      console.log('change 1.0');
+      // console.log('change 1.0');
    
       let $form = document.querySelector(addToCartFormSelector);
       let selectedVariant = productForm.getActiveVariant($form);
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded',function () {
         objectsArray.push(obj);
       });
 
-      console.log(formOptions);
-      console.log(objectsArray);
+      // console.log(formOptions);
+      // console.log(objectsArray);
 
       objectsArray.forEach(function (item, index) {
         if (item.name.indexOf("option") !== -1) {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     validate: function (event) {
 
-      console.log('validate 2.13')
+      // console.log('validate 2.13')
      
 
       let $form = this;
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded',function () {
       // $(document).on( "change", productOptionsSelector, productForm.onProductOptionChanged ); 
       // $(document).on('form:change', addToCartFormSelector, productForm.validate)    
 
-      console.log('init 1.2')
+      // console.log('init 1.2')
       document.addEventListener('change', productForm.onProductOptionChanged )
       document.addEventListener('change', function(event) {
        productForm.validate( event);
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded',function () {
       quantity.innerHTML = currentCount;
       quantity.innerHTML = currentCount;
       quantityHidden.value = currentCount;
-      console.log(quantityHidden);
+      // console.log(quantityHidden);
     }
   };
 
@@ -192,7 +192,6 @@ document.addEventListener('resize', ()=> {
 
 
 
-   console.log(cartBtns)
 
      let closeCart= ()=> {
       
@@ -220,14 +219,12 @@ document.addEventListener('resize', ()=> {
 
           cartState = false;
           closeCart();
-          console.log(cart)
         
           
         } else { 
         
           cartState = true;
           openCart();
-          console.log(cart)
 
         }
   
