@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     onProductOptionChanged: function (event) {
 
-      console.log('change 1.0');
+      // console.log('change 1.0');
    
       let $form = document.querySelector(addToCartFormSelector);
       let selectedVariant = productForm.getActiveVariant($form);
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded',function () {
         objectsArray.push(obj);
       });
 
-      console.log(formOptions);
-      console.log(objectsArray);
+      // console.log(formOptions);
+      // console.log(objectsArray);
 
       objectsArray.forEach(function (item, index) {
         if (item.name.indexOf("option") !== -1) {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded',function () {
 
     validate: function (event) {
 
-      console.log('validate 2.13')
+      // console.log('validate 2.13')
      
 
       let $form = this;
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded',function () {
         $addToCartButton.disabled = false;
         $quantity.dataset.max = $maxQuantity;
       } else {
-        $id.value = 'dick'; 
+        $id.value = 'null'; 
         $addToCartButton.disabled = true; 
       }
     },
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded',function () {
       // $(document).on( "change", productOptionsSelector, productForm.onProductOptionChanged ); 
       // $(document).on('form:change', addToCartFormSelector, productForm.validate)    
 
-      console.log('init 1.2')
+      // console.log('init 1.2')
       document.addEventListener('change', productForm.onProductOptionChanged )
       document.addEventListener('change', function(event) {
        productForm.validate( event);
@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded',function () {
   productForm.init();
 
   // Quanity
+
+  
 
   let plus = document.querySelector(".js-quantity-add");
   let minus = document.querySelector(".js-quantity-minus");
@@ -134,7 +136,7 @@ document.addEventListener('DOMContentLoaded',function () {
       quantity.innerHTML = currentCount;
       quantity.innerHTML = currentCount;
       quantityHidden.value = currentCount;
-      console.log(quantityHidden);
+      // console.log(quantityHidden);
     }
   };
 
@@ -158,24 +160,79 @@ document.addEventListener('DOMContentLoaded',function () {
     minus.addEventListener("click", reduce);
   }
 
-  // accoridan
 
-  let a = document.querySelectorAll(".accordian-title");
-
-  console.log(a);
-
-  a.forEach((i) => {
-    i.addEventListener("click", (i) => {
-      console.log(" click ");
-      console.log(i.target.parentNode.classList);
-
-      if (i.target.parentNode.classList.contains("accordian-open")) {
-        i.target.parentNode.classList.remove("accordian-open");
-      } else {
-        i.target.parentNode.classList.add("accordian-open");
-      }
-    });
-  });
 });
+
+document.addEventListener('liquid-ajax-cart:request-end', event => {
+  const {requestState} = event.detail;
+
+  // If the "add to cart" request is successful
+  if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+
+    // Add the CSS class to the "body" tag
+    document.body.classList.add('js-show-ajax-cart');
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded',function () {
+
+  let cart = document.querySelector('.my-cart');
+  let bodyWrap = document.querySelectorAll('.body-wrap')
+  let cartBtns = document.querySelectorAll('.cart-btn');
+  let cartState = false ;
+
+  let winHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--winHeight', winHeight + 'px');
+
+document.addEventListener('resize', ()=> {
+  winHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--winHeight', winHeight + 'px');
+})
+
+
+
+
+     let closeCart= ()=> {
+      
+      cart.classList.remove('cart-open')
+      document.body.classList.remove('dim')
+      
+    };
+
+    let openCart= ()=> {
+  
+      cart.classList.add('cart-open')
+      document.body.classList.add('dim')
+
+    };
+
+
+
+    cartBtns.forEach( (i) => {
+      i.addEventListener('mousedown', ()=> {  
+
+        
+        
+        if(cartState){
+   
+
+          cartState = false;
+          closeCart();
+        
+          
+        } else { 
+        
+          cartState = true;
+          openCart();
+
+        }
+  
+      });
+  
+    })
+
+    
+    })
 
 // btn

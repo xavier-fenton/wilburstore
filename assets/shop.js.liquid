@@ -1,16 +1,43 @@
-import "liquid-ajax-cart";
+// function runWhenInit() {}
 
+// if (window.liquidAjaxCart?.init) {
+//   // if Liquid Ajax Cart is already initialized
+//   runWhenInit()
+// } else {
+//   // wait for Liquid Ajax Cart to be initialized
+//   document.addEventListener('liquid-ajax-cart:init', runWhenInit)
+// }
 
-
-function runWhenInit() {
-    console.log("The current cart state is: ", window.liquidAjaxCart.cart);
+function createMobileMenu(menuElement, buttonElement) {
+  menuElement.classList.value = 'hidden'
+  function toggleMenu() {
+    if (menuElement.classList.value === '') {
+      menuElement.classList.add('hidden')
+    } else {
+      menuElement.classList.remove('hidden')
+    }
   }
-  
-  if (window.liquidAjaxCart?.init) {
-    // if Liquid Ajax Cart is already initialized
-    runWhenInit();
-  } else {
-    // wait for Liquid Ajax Cart to be initialized
-    document.addEventListener("liquid-ajax-cart:init", runWhenInit);
-  }
 
+  buttonElement.addEventListener('click', toggleMenu)
+}
+
+const menuList = document.getElementById('mobile-menu')
+const mobileButton = document.getElementById('mobile-menu-button')
+
+createMobileMenu(menuList, mobileButton)
+
+function toggleMenuDueToSize() {
+  let countExit = 0
+  const width = window.innerWidth
+
+  if (width > 640) {
+    countExit + 1
+    menuList.classList.add('hidden')
+  }
+  if (width <= 640 && countExit === 1) {
+    countExit = 0
+    menuList.classList.add('hidden')
+  }
+}
+
+window.addEventListener('resize', toggleMenuDueToSize)

@@ -1,24 +1,56 @@
 
 
-<div class="flex  h-screen"> 
-    <div class="w-full"> 
 
-    {% for image in product.images %}
 
-        {{ image | image_url: width: 700 | image_tag }}
+<div class='grid md:grid-cols-2 grid-cols-1   gap-2  md:p-2  p-0 '>
 
+    <div class='post-wrapper transition-all flex md:flex-col md:h-auto h-[80vh] flex-row gap-2 overflow-y-scroll   '>
+        
+        {% for image in product.images %}
+
+                       
+                        {{ image | image_url: width: 700 | image_tag: class:'h-full w-fit ' }}
+                        
+                    
         {% endfor %}
-    </div>
+            
+    
+    </div>     
 
+0
+    {% comment %} imfo  {% endcomment %}
 
-    <div class="w-full p-2 pt-40 " > 
+     <div class='  h-fit md:sticky top-1 p-4'>
 
-    <p>  {{product.title}} </p>
+     
+        {% comment %} {% render 'indent-paragraph' with { title:'Title', description: product.title } %}
+        {% render 'indent-paragraph' with { title:'Infomation', description: product.description } %} {% endcomment %}
+        <h1> {{ product.title }} </h1>
+        <p> {{ product.description }} </p>
+        <p >
+            {% render 'info-line' with { title: 'Width', value: product.metafields.custom.width  }%}
+            {% render 'info-line' with { title: 'Height', value: product.metafields.custom.height  }%}
+            {% render 'info-line' with { title: 'Legnth', value: product.metafields.custom.length }%}
+        </p>
+        
+        <ajax-cart-product-form> 
+            {% render 'add-to-cart-form' with current_variant: current_variant  %}
+        </ajax-cart-product-form>0
 
-    <p> {{ product.description }}</p>
+       
+        <div class=''  >
+            <button             
+               form="add-to-cart-form"
+               class=" hover:bg-black hover:text-white  w-fit border-black border-2 text-black bg-opacity-90 p-4 pl-6 pr-6 text-xs mt-4 "
+               type="submit"
+               name="add"
+               id="add-to-cart-button">
+               Add to cart 
+           </button>
+       </div>
 
-    {% render 'add-to-cart-form' with current_variant: current_variant  %}
+     </div>
     
 
-    </div>
-</div>
+</div>      
+
