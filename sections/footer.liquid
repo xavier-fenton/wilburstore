@@ -1,15 +1,15 @@
-<div class="bg-[#fffdfd] flex flex-row gap-2 justify-between p-4 px-[40px] text-xs">
-  <div>
-    <div>Wilbur 2024</div>
+<div class="bg-[#fffdfd] flex flex-col-reverse sm:flex sm:flex-row gap-2 sm:justify-between p-4 px-[20px] sm:px-[40px] text-xs">
+  <div class="text-lg">
+    <a class="text-[15px] sm:text-[12px]" href="/">wilbur©2024</a>
   </div>
 
-  <div class="flex flex-row gap-2">
-    <div>Instagram</div>
-    <div>Contact</div>
-    <div>Blog</div>
-    <div>FAQ</div>
-    <div>Privacy</div>
-    <div>Accessibility</div>
-    <div>Shipping & Returns</div>
+  <div class="flex flex-col sm:flex sm:flex-row gap-2 w-fit">
+    <div>
+      <a href="/blogs">Blog/Archive</a>
+    </div>
+    {% for page in pages -%}
+      <div class="hover:underline">{{ page.title | link_to: page.url }}</div>
+    {%- endfor %}
+
   </div>
 </div>

@@ -1,5 +1,11 @@
+{% assign blog_handle = section.settings.blog_handle %}
+{% assign blog = blogs[blog_handle] %}
+
+
 <ul>
   {% for article in blog.articles %}
-  <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+    <li>
+      <a href="{{ article.url }}">{{ article.title }}</a>
+    </li>
   {% endfor %}
 </ul>

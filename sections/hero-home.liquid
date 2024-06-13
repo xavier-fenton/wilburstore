@@ -1,4 +1,4 @@
-<div class='pt-[84px] h-screen grid grid-flow-dense grid-cols-4 gap-2  p-2 [&>*:nth-child(2n)]:col-span-2 row-span-2 '>
+<div class='pt-[84px] px-[20px] sm:px-[40px] grid grid-cols-2 sm:grid-flow-dense sm:grid-cols-4 gap-2  p-2 [&>*:nth-child(2n)]:col-span-2 row-span-2 '>
   {% for collection in collections %}
     {{- collection.title | link_to: collection.url }}
     {{ collection.featured_image | image_url: width: 700 | image_tag }}

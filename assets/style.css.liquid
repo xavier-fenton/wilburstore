@@ -4,61 +4,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/univers-lt-std');
 
+html,
+body {
+  padding:0;
+  margin: 0;
+  height: 100dvh;
+}
+
 
 div {
-  letter-spacing: .35px;
-  color: rgba(12, 12, 12, 0.829);
-  font-family: 'Univers LT Std', sans-serif; 
+  letter-spacing: 0.35px;
+  color: #222;
+  font-family: 'Univers LT Std';
 }
 
-
-p, ul, a, h1, h2,button,input {
-    font-size: 12px ;
-    letter-spacing: .35px;
-    color: rgba(12, 12, 12, 0.829);
-    font-family: 'Univers LT Std', sans-serif;
-    
+p,
+ul,
+a,
+h1,
+h2,
+button,
+input {
+  font-size: 12px;
+  letter-spacing: 0.35px;
+  color: #222;
+  font-family: 'Univers LT Std';
 }
 
-
-.hero-image-section img{
-   width: 100%;
-   height: 100vh;
-   object-fit: cover;
+.hero-image-section img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 }
 
-img{
-    width: 100%; 
-    height: 100%;
-    object-fit: cover;
-    max-height: calc(120vh);
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: calc(120vh);
 }
 
 /* cart */
 
-
-.my-cart{
+.my-cart {
   position: fixed;
   right: -1000px;
   top: 7px;
   cursor: pointer;
-  width: calc( 400px  );
-  height: calc( var(--winHeight) - 14px);
-  transition: ease all 0.3s ;
+  width: calc(400px);
+  height: calc(var(--winHeight) - 14px);
+  transition: ease all 0.3s;
   overflow: hidden;
-
 }
 
-
- 
-.cart-open{
-
- width: calc( 400px  );
-  height: calc( var(--winHeight) - 14px);
+.cart-open {
+  width: calc(400px);
+  height: calc(var(--winHeight) - 14px);
   overflow: scroll;
   transition: right 0.3s;
   right: 7px;
- 
 }
 
 /* @media only screen and (max-width: 768px) {
@@ -90,27 +94,26 @@ img{
   }
 } */
 
-
 ajax-cart-product-form[processing]:before {
   content: 'Loading';
   display: block;
 }
 
 /* Make the "Add to cart" button look visually disabled while loading */
-ajax-cart-product-form[processing] [type="submit"] {
-  opacity: .7;
+ajax-cart-product-form[processing] [type='submit'] {
+  opacity: 0.7;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .my-cart__items {
   opacity: 1;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 /* Make the cart content look visually disabled while updating */
 html.js-ajax-cart-processing .my-cart__items {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 /* Show a loading indicator */
@@ -118,4 +121,3 @@ html.js-ajax-cart-processing .my-cart__items:before {
   content: 'Loading';
   display: block;
 }
-

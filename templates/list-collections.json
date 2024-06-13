@@ -1,10 +1,15 @@
 {
-    "sections": {
-        "main": {
-            "type": "main-list-collections"
-        }
+  "sections": {
+    "main": {
+      "type": "main-list-collections"
     },
-    "order": [
-        "main"
-    ]
+    "hero_home_hPrMPx": {
+      "type": "hero-home",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "hero_home_hPrMPx"
+  ]
 }
