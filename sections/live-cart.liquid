@@ -1,40 +1,45 @@
- 
+<div class="my-cart bg-white rounded-md  z-[2000]  backdrop-blur-lg relative md:w-[350px] sm:w-full w-full ">
 
-
-
-<div class=" fixed my-cart bg-white rounded-md  z-[2000]  backdrop-blur-lg relative md:w-[350px] sm:w-full w-full " >
-  
   <div class=' absolute top-0 right-0 left-0 flex p-2  w-full   z-50 justify-between items-end '>
     <h2>Cart ({{ cart.item_count }})</h2>
     <h2 class='cart-btn'>Close</h2>
-  </div> 
+  </div>
 
 
-    <div class="  overflow-scroll h-full pb-10  " data-ajax-cart-section >
-      <div class="my-cart__items " data-ajax-cart-section-scroll >
-  
-        <!-- Loop through cart items -->
-        {% for line_item in cart.items %}
+  <div class="  overflow-scroll h-full pb-10  " data-ajax-cart-section>
+    <div class="my-cart__items " data-ajax-cart-section-scroll>
 
-          {% render 'cart-card' with { product: line_item , index: forloop.index } %}
-        {% endfor %}
-       </div> 
+      <!-- Loop through cart items -->
+      {% for line_item in cart.items %}
 
+        {% render 'cart-card' with { product: line_item
+          , index: forloop.index } %}
+      {% endfor %}
     </div>
 
-<div class=' cart-footer flex gap-2 justify-center align-middle absolute bottom-2  w-full '> 
+  </div>
+
+  <div class=' cart-footer flex gap-2 justify-center align-middle absolute bottom-2  w-full '>
 
 
-{% form 'cart', cart, id: 'my-ajax-cart-form' %}
-<button class=' caption flex w-full h-el  pl-4 pr-4 justify-center items-center bg-c3 bg-opacity-50 rounded-lg  backdrop-blur-lg '  type="submit" name="checkout">
-  Checkout — {{ cart.total_price | money_with_currency }}
-</button> 
-{% endform %}
+    {% form 'cart'
+      , cart
+      , id: 'my-ajax-cart-form' %}
+      <button
+        class=' caption flex w-full h-el  pl-4 pr-4 justify-center items-center bg-c3 bg-opacity-50 rounded-lg  backdrop-blur-lg '
+        type="submit"
+        name="checkout">
+        Checkout — {{ cart.total_price | money_with_currency }}
+      </button>
+    {% endform %}
+
+  </div>
 
 </div>
 
-</div>
 
-
-
-{% schema %} { "name": "My Ajax cart" } {% endschema %}
+{% schema %}
+  {
+    "name": "My Ajax cart"
+  }
+{% endschema %}
