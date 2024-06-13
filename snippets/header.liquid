@@ -1,6 +1,6 @@
-<nav class="bg-[#fffdfd] fixed w-screen">
-  <div class="">
-    <div class="relative items-center h-16 flex justify-between px-[20px] sm:px-[20px] sm:grid sm:grid-cols-3">
+<nav class="bg-[#fffdfd] top-0 fixed w-screen">
+  <div>
+    <div class="relative items-center h-[50px] flex justify-between px-[20px] sm:px-[40px] sm:grid sm:grid-cols-3">
       <div class=" h-fit inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button -->
         <button
@@ -49,13 +49,18 @@
       </div>
 
       <div class="hidden sm:flex sm:items-center h-fit">
-        <div class="flex gap-[5px] uppercase items-center justify-center">
+        <div class="flex gap-[16px] uppercase items-center justify-center">
+          <div>
+            <a class="hover:underline" href="/collections">All</a>
+          </div>
           {% for collection in collections %}
             <div class="hover:underline">{{- collection.title | link_to: collection.url }}</div>
           {% endfor %}
         </div>
       </div>
-      <div class="flex justify-end items-center sm:justify-center">Wilbur Hsu</div>
+      <div class="flex justify-end items-center sm:justify-center">
+        <a href="/collections">Wilbur Hsu</a>
+      </div>
       <div class='flex justify-end items-center'>
         <p class=' cart-btn  bg-white rounded-full w-fit h-fit pl-2 pr-2 my-1 hover:underline' data-ajax-cart-section>Cart ( {{ cart.item_count }} )
         </p>
@@ -69,8 +74,11 @@
 
 
   <div class="hidden" id="mobile-menu">
-    <div class="space-y-1 pb-3 pt-2 w-fit px-[30px]">
+    <div class="space-y-1 pb-3 w-fit px-[30px]">
       <div class="flex flex-col gap-[5px] uppercase w-fit">
+        <div>
+          <a class="hover:underline" href="/collections">All</a>
+        </div>
         {% for collection in collections %}
           <div class="hover:underline">{{- collection.title | link_to: collection.url }}</div>
         {% endfor %}
