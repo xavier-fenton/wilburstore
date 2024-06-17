@@ -1,6 +1,15 @@
-<div class='pt-[84px] px-[20px] sm:px-[40px] grid grid-cols-2 sm:grid-flow-dense sm:grid-cols-4 gap-2  p-2 [&>*:nth-child(2n)]:col-span-2 row-span-2 '>
+<div class='pt-[84px] px-[20px] sm:px-[40px] grid grid-cols-2 sm:grid-flow-dense sm:grid-cols-2 gap-4 p-2'>
   {% for collection in collections %}
-    {{- collection.title | link_to: collection.url }}
-    {{ collection.featured_image | image_url: width: 700 | image_tag }}
+    <div class="flex flex-col-reverse gap-2">
+      <div>{{- collection.title | link_to: collection.url }}</div>
+      {% if collection.featured_image %}
+        {{ collection.featured_image | image_url: width: 700 | image_tag }}
+      {% else %}
+        <div>
+          <img srcset="../assets/example.jpg">
+        </div>
+      {% endif %}
+    </div>
+    {% comment %} {{ collection.featured_image | image_url: width: 700 | image_tag }} {% endcomment %}
   {% endfor %}
 </div>

@@ -1,10 +1,5 @@
-{% unless section.settings.disable_front_page_section %}
-  <!-- Code to render the front page section -->
-{% endunless %}
-
 {% if collection.all_products_count > 0 %}
   {% render 'title' with { title: collection.title } %}
-  {% comment %} <div class='grid grid-flow-dense grid-cols-4 gap-2  p-2 [&>*:nth-child(2n)]:col-span-2 row-span-2 '>   {% endcomment %}
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-5 px-[80px] pb-[80px]">
 
 
@@ -13,5 +8,11 @@
 
   </div>
 {% else %}
-  <p>Sorry, there are no products in this collection</p>
+  <div>
+    {% render 'title' with { title: collection.title } %}
+    <div class=" px-[80px] py-[80px]">
+
+      <p>Sorry, there are no products in this collection</p>
+    </div>
+  </div>
 {% endif %}

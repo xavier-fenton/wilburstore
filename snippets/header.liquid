@@ -1,7 +1,7 @@
-<nav class="bg-[#fffdfd] top-0 fixed w-screen">
+<nav class="bg-[#fffdfd] top-0 fixed w-screen px-[20px] sm:px-[40px]">
   <div>
-    <div class="relative items-center h-[50px] flex justify-between px-[20px] sm:px-[40px] sm:grid sm:grid-cols-3">
-      <div class=" h-fit inset-y-0 left-0 flex items-center sm:hidden">
+    <div class="relative items-center h-[50px] flex justify-between sm:grid sm:grid-cols-3">
+      <div class=" h-fit inset-y-0 left-0 flex items-center lg:hidden">
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-button"
@@ -48,13 +48,13 @@
         </button>
       </div>
 
-      <div class="hidden sm:flex sm:items-center h-fit">
-        <div class="flex gap-[16px] uppercase items-center justify-center">
+      <div class="hidden lg:flex md:items-center w-full h-fit">
+        <div class="flex gap-[10px] uppercase text-sm items-center">
           <div>
             <a class="hover:underline" href="/collections">All</a>
           </div>
           {% for collection in collections %}
-            <div class="hover:underline">{{- collection.title | link_to: collection.url }}</div>
+            <div class="hover:underline w-[100px]">{{- collection.title | link_to: collection.url }}</div>
           {% endfor %}
         </div>
       </div>
@@ -74,7 +74,7 @@
 
 
   <div class="hidden" id="mobile-menu">
-    <div class="space-y-1 pb-3 w-fit px-[30px]">
+    <div class="space-y-1 pb-3 w-fit px-[10px]">
       <div class="flex flex-col gap-[5px] uppercase w-fit">
         <div>
           <a class="hover:underline" href="/collections">All</a>
