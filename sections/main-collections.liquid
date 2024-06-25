@@ -7,7 +7,7 @@
         {{ collection.featured_image | image_url: width: 700 | image_tag }}
       {% else %}
         <div>
-          <img srcset="../assets/example.jpg">
+          <img src="{{ 'example.jpg' | asset_url }}">
         </div>
       {% endif %}
     </div>
