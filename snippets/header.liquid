@@ -59,7 +59,9 @@
         </div>
       </div>
       <div class="flex justify-end items-center sm:justify-center">
-        <a href="/collections">Wilbur Hsu</a>
+        {% comment %} <a href="/">Wilbur Hsu</a> {% endcomment %}
+        <a href="/"><img class="h-[50px]" srcset="../assets/WilburName.jpg"></a>
+
       </div>
       <div class='flex justify-end items-center'>
         <p class=' cart-btn  bg-white rounded-full w-fit h-fit pl-2 pr-2 my-1 hover:underline' data-ajax-cart-section>Cart ( {{ cart.item_count }} )

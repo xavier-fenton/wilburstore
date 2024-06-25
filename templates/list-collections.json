@@ -1,12 +1,12 @@
 {
   "sections": {
 
-    "hero_home_hPrMPx": {
-      "type": "hero-home",
+    "collections": {
+      "type": "main-collections",
       "settings": {}
     }
   },
   "order": [
-    "hero_home_hPrMPx"
+    "collections"
   ]
 }
