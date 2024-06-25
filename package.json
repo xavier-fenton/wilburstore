@@ -4,7 +4,10 @@
   },
   "scripts": {
     "start": "shopify theme dev --store wilburhsu",
-    "watch": "npx tailwind -i ./assets/style.css.liquid -o ./assets/output.css.liquid --watch"
+    "watch": "npx tailwind -i ./assets/style.css.liquid -o ./assets/output.css.liquid --watch",
+    "shopify:pull": "shopify theme pull --nodelete",
+    "shopify:push": "shopify theme push"
+
   },
   "dependencies": {
     "liquid-ajax-cart": "^2.1.0"
