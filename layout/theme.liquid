@@ -10,62 +10,59 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     {% if template == 'index' %}
-      <title>{{ shop.name }} | {{ page_title }}</title>
+      <title>
+        {{ shop.name }}
+        |
+        {{ page_title }}
+      </title>
     {% elsif template == '404' %}
-      <title>Page Not Found | {{ shop.name }}</title>
+      <title>
+        Page Not Found |
+        {{ shop.name }}
+      </title>
     {% else %}
-      <title>{{ page_title }} | {{ shop.name }}</title>
+      <title>
+        {{ page_title }}
+        |
+        {{ shop.name }}
+      </title>
     {% endif %}
     {% if page_description %}
-      <meta name="description" content="{{ page_description }}" />
+      <meta name="description" content="{{ page_description }}">
     {% endif %}
-    <link rel="canonical" href="{{ canonical_url }}" />
-    <meta name="viewport" content="width=device-width" />
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="viewport" content="width=device-width">
     {{ content_for_header }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
     {{ 'output.css' | asset_url | stylesheet_tag }}
 
-  {% comment %}  swiper {% endcomment %}
-  {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-                    <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script> {% endcomment %}
-
-
+  
   </head>
   <body
-    style='background:{{ product.metafields.custom.page_colour }} '
     id="{{ page_title | handle }}"
-    class=" text-grey-900 template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
-
-
+    class=" text-grey-900 template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}"
+  >
     {% comment %}  styles for body wrap are in css due tw error {% endcomment %}
-
     {% section 'live-cart' %}
 
-    <div class='js-main '>
+    <div class="js-main ">
       {% render 'header' %}
       {{ content_for_layout }}
 
       {% section 'footer' %}
-
     </div>
 
-    {% comment %} Somewhere in layout/theme.liquid {% endcomment %}
-
     <script type="application/json" data-ajax-cart-initial-state>
-            {{ cart | json }}
+      {{ cart | json }}
     </script>
 
     <script type="module">
-            import '{{ "liquid-ajax-cart-v2.1.0.js" | asset_url }}';
+      import '{{ "liquid-ajax-cart-v2.1.1.js" | asset_url }}';
     </script>
-
+    
 
     <script src="{{ 'shop.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
-    {% comment %} <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script> {% endcomment %}
-
-
-    <script></script>
 
 
   </body>

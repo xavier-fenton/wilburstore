@@ -4,48 +4,17 @@
       <a class="hover:underline" href="{{ url.url }}">Back</a>
     {% endfor %}
   </div>
-  <div class='grid md:grid-cols-2 grid-cols-1   gap-2  md:p-2  p-0'>
-    <div class='no-scrollbar post-wrapper transition-all flex md:flex-col md:h-auto h-[80vh] flex-row gap-2 overflow-y-scroll'>
-
+  <div class="grid md:grid-cols-2 grid-cols-1   gap-2  md:p-2  p-0">
+    <div class="no-scrollbar post-wrapper transition-all flex md:flex-col md:h-auto h-[80vh] flex-row gap-2 overflow-y-scroll">
       {% for image in product.images %}
-
-
         {{ image | image_url: width: 700 | image_tag: class: 'h-full w-fit ' }}
-
-
       {% endfor %}
-
-
-    </div>
-    <div class='h-fit md:sticky top-[50px] p-0 lg:p-4'>
-
-      <div class="flex flex-col gap-2 w-[100%] lg:w-[80%]">
-        <div class="text:md">
-          {{ product.title }}
-        </div>
-        <div class="text-xs">
-          ${{ product.price | money_without_currency }}</div>
-        <div class="text-xs">
-          {% if product.description %}
-            {{ product.description }}
-          {% else %}
-            <div>No Description Given</div>
-          {% endif %}
-        </div>
-        <div class="text-xs hover:underline hover:cursor-pointer">Details</div>
-
-
-        <button
-          form="add-to-cart-form"
-          class="text-white sm:w-fit bg-black w-[100%] border-black border-2  bg-opacity-90 p-2 px-6 text-xs mt-4 flex justify-center "
-          type="submit"
-          name="add"
-          id="add-to-cart-button">
-          ${{ product.price | money_without_currency }} - Add To Cart
-        </button>
-      </div>
     </div>
 
-
+    <div class="h-fit md:sticky top-[50px] p-0 lg:p-4">
+      <ajax-cart-product-form>
+        {% render 'add-to-cart-form' with current_variant: current_variant %}
+      </ajax-cart-product-form>
+    </div>
   </div>
 </div>

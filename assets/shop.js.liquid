@@ -1,12 +1,22 @@
-// function runWhenInit() {}
+function runWhenInit() {
+  console.log("The current cart state is: ", window.liquidAjaxCart.cart);
+}
+// Listens to requests being made and what they contain
+document.addEventListener("liquid-ajax-cart:request-start", function(event) {
+  const {requestState} = event.detail;
 
-// if (window.liquidAjaxCart?.init) {
-//   // if Liquid Ajax Cart is already initialized
-//   runWhenInit()
-// } else {
-//   // wait for Liquid Ajax Cart to be initialized
-//   document.addEventListener('liquid-ajax-cart:init', runWhenInit)
-// }
+  // Print the requestState before the request is performed
+  console.log(requestState);
+});
+
+
+if (window.liquidAjaxCart?.init) {
+  // if Liquid Ajax Cart is already initialized
+  runWhenInit()
+} else {
+  // wait for Liquid Ajax Cart to be initialized
+  document.addEventListener('liquid-ajax-cart:init', runWhenInit)
+}
 
 function createMobileMenu(menuElement, buttonElement) {
   menuElement.classList.value = 'hidden'
@@ -41,3 +51,4 @@ function toggleMenuDueToSize() {
 }
 
 window.addEventListener('resize', toggleMenuDueToSize)
+
