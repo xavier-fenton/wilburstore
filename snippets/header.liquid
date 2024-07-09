@@ -1,6 +1,6 @@
 <nav class="bg-[#fffdfd] top-0 fixed w-screen px-[20px] sm:px-[40px]">
   <div>
-    <div class="relative items-center h-[50px] flex justify-between sm:grid sm:grid-cols-3">
+    <div class="relative items-center h-[50px] flex justify-between">
       <div class="text-md h-fit inset-y-0 left-0 flex items-center lg:hidden">
         <!-- Mobile menu button -->
         <button
@@ -8,13 +8,12 @@
           type="button"
           class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-200 hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
+          aria-expanded="false">
           <span class="absolute -inset-0.5"></span>
           <span class="sr-only">Open main menu</span>
           <!--
             Icon when menu is closed.
-
+          
             Menu open: "hidden", Menu closed: "block"
           -->
           <svg
@@ -23,8 +22,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -32,7 +30,7 @@
           </svg>
           <!--
             Icon when menu is open.
-
+          
             Menu open: "block", Menu closed: "hidden"
           -->
           <svg
@@ -41,8 +39,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            aria-hidden="true"
-          >
+            aria-hidden="true">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -61,13 +58,17 @@
           {% endfor %}
         </div>
       </div>
-      <div class="flex justify-end items-center sm:justify-center">
-        {% comment %} <a href="/">Wilbur Hsu</a> {% endcomment %}
-        <a href="/"><img class="h-[50px]" src="{{ 'WilburName.jpg' ||  asset_url }}"></a>
-      </div>
-      <div class="flex justify-end items-center">
-        <div class=" cart-btn text-xs lg:text-md bg-white rounded-full w-fit h-fit hover:underline">
-          Cart ( <span data-ajax-cart-bind="item_count" class="header__cart-quantity">{{ cart.item_count }}</span> )
+      <div class="flex flex-row gap-[20px] w-full justify-end">
+        <div class="flex justify-end items-center sm:justify-center">
+          {% comment %} <a href="/">Wilbur Hsu</a> {% endcomment %}
+          <a href="/"><img class="h-[50px] w-fit" src="{{ 'WilburName.jpg' ||  asset_url }}"></a>
+        </div>
+        <div class="flex justify-end items-center">
+          <div class=" cart-btn text-xs lg:text-md bg-white rounded-full w-fit h-fit hover:underline">
+            Cart (
+            <span data-ajax-cart-bind="item_count" class="header__cart-quantity">{{ cart.item_count }}</span>
+            )
+          </div>
         </div>
       </div>
     </div>
