@@ -1,23 +1,21 @@
-<!-- option  -->
+<!-- option -->
 
 
-
-<div class="product-option-row product-option-row-option">
+<div id="variants" class="product-option-row product-option-row-option flex flex-col gap-[5px] pb-[10px]">
   <label class="grey" for="{% if type == 'select' %}select-{{ option.name}}{% endif %}">
     {% if option.name == "Color" %}
       Colour
     {% else %}
-
-      {{ option.name }}
-
+      <div class="text-gray-500 text-[11px]">
+        {{ option.name }}
+      </div>
     {% endif %}
-
 
 
   </label>
 
 
-  <div class="option-values">
+  <div class="option-values flex flex-col gap-[2.5px]">
 
     {% if type == 'select' %}
 
@@ -26,7 +24,7 @@
         {% for value in option.values %}
           <option value="{{ value }}">{{ value }}</option>
         {% endfor %}
-        
+
       </select>
 
     {% else %}
@@ -34,11 +32,11 @@
         {% for value in option.values %}
           {% if value == variant.title %}
             {% assign radio_id = 'option-' | append: option_name | append: '-' | append: value | handleize %}
-            <div class="product-option">
+            <div class="product-option flex flex-row gap-[5px] items-center !text-xs">
 
 
               <input
-                class="variant-radio"
+                class="variant-radio h-2 w-2 peer relative cursor-pointer appearance-none fill-black rounded-full border checked:bg-gray-900 text-gray-900 transition-all checked:border-gray-900 checked:before:bg-gray-900"
                 {% if forloop.index == 1 and variant.inventory_quantity > 0 %}
                 checked="checked"
                 {% endif %}
@@ -49,10 +47,10 @@
                 type="radio"
                 name="{{ option_name }}"
                 value="{{ value }}"
-                {% if value == selected %}checked{% endif %}>
-              <label for="{{ radio_id }}">
+                {% if value == selected %}
+                checked{% endif %} />
+              <label class="text-[10px]" for="{{ radio_id }}">
                 {{ value }}
-
 
 
               </label>
@@ -62,7 +60,6 @@
         {% endfor %}
       {% endfor %}
     {% endif %}
-
 
 
   </div>

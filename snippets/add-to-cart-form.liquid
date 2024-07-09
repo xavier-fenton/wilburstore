@@ -12,7 +12,8 @@
 
 {% assign can_add_to_cart = false %}
 
-{% if has_multiple_variants == false and product.available %}{% endif %}
+{% if has_multiple_variants == false and product.available %}
+{% endif %}
 
 <!-- //---------------------- json get ------------------------------ -->
 {% if has_multiple_variants %}
@@ -22,14 +23,10 @@
   {% unless variants_with_quantity_json contains 'inventory_quantity' %}
     {% for variant in product.variants %}
       {% assign replace_hook_variant_id = '"id":' | append: variant.id %}
-      {% assign replace_id_plus_inventory = replace_hook_variant_id
-        | append: ','
-        | append: '"inventory_quantity":'
-        | append: variant.inventory_quantity
+      {% assign replace_id_plus_inventory = replace_hook_variant_id | append: ',' | append: '"inventory_quantity":' | append: variant.inventory_quantity
       %}
 
-      {% assign variants_with_quantity_json = variants_with_quantity_json
-        | replace: replace_hook_variant_id, replace_id_plus_inventory
+      {% assign variants_with_quantity_json = variants_with_quantity_json | replace: replace_hook_variant_id, replace_id_plus_inventory
       %}
     {% endfor %}
   {% endunless %}
@@ -38,24 +35,12 @@
 <!-- //---------------------- json get ------------------------------ -->
 
 <form
-  class=""
+  class="flex flex-col"
   id="add-to-cart-form"
   action="/cart/add"
   method="post"
   enctype="multipart/form-data"
-  data-variants="{{ variants_with_quantity_json | url_param_escape }}"
->
-  {% if has_multiple_options or has_multiple_variants %}
-    {% for option in product.options_with_values %}
-      {% assign option_name = 'option' | append: option.position %}
-
-      {% if option.name != 'Color' %}
-        {% render 'product-option-row', option: option, option_name: option_name, type: 'radio' %}
-      {% else %}
-        {% render 'product-option-row', option: option, option_name: option_name, type: 'radio' %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+  data-variants="{{ variants_with_quantity_json | url_param_escape }}">
 
   <div class="flex flex-col gap-2 w-[100%] lg:w-[80%]">
     <div class="text:md">
@@ -72,9 +57,8 @@
       type=""
       name="id"
       class="js-variant-id hidden"
-      value="{{product.variants.first.id}}"
-    >
-    <div class=" ">
+      value="{{product.variants.first.id}}">
+    <div class="">
       <ul>
         {% if product.compare_at_price > 0 %}
           <p class="unavailble">
@@ -88,7 +72,29 @@
         {% endif %}
       </ul>
     </div>
-    <div class="text-xs hover:underline hover:cursor-pointer">Details</div>
+    <div class="flex flex-col">
+      <div id="details-button" class="text-xs hover:underline hover:cursor-pointer">Details</div>
+
+      <div id="variants-options" class="text-xs pl-[5px] pt-[5px] w-fit">
+        {% if has_multiple_options or has_multiple_variants %}
+          {% for option in product.options_with_values %}
+            {% assign option_name = 'option' | append: option.position %}
+
+            {% if option.name != 'Color' %}
+              {% render 'product-option-row'
+                , option: option
+                , option_name: option_name
+                , type: 'radio' %}
+            {% else %}
+              {% render 'product-option-row'
+                , option: option
+                , option_name: option_name
+                , type: 'radio' %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
   </div>
 
   <p data-ajax-cart-errors="form" class=" text-orange-500 font-bold text-center  2"></p>
@@ -99,14 +105,12 @@
     type="hidden"
     class="js-hidden-quantity"
     name="quantity"
-    value="1"
-  >
+    value="1">
 
   <button
     class="text-white sm:w-fit bg-black w-[100%] border-black border-2  bg-opacity-90 p-2 px-6 text-xs mt-4 flex justify-center"
     type="submit"
-    name="add"
-  >
+    name="add">
     ${{ product.price | money_without_currency }} - Add To Cart
   </button>
 </form>
