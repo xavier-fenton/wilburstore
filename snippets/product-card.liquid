@@ -1,13 +1,15 @@
 {% for product in collection.products %}
-
-  <div class="flex flex-col h-full w-full bg-white">
-    <a href="{{ product.url }}">
-      <div class="flex justify-center">
+  <div class="flex w-full justify-start [&:nth-child(odd)]:justify-end">
+    <div class="flex flex-col justify-end h-full w-[380px]">
+      <a href="{{ product.url }}">
         <div class="flex flex-col">
           {% if product.featured_image %}
-
-            <div class='h-[500px]'>
-              {{ product.featured_image | image_url: height: 700 | image_tag: class: ' object-cover object-center aspect-[1/1.4]' }}
+            <div class="">
+              {{
+                product.featured_image
+                | image_url: height: 500
+                | image_tag: class: ' object-cover object-center aspect-[1/1.4]'
+              }}
             </div>
           {% endif %}
 
@@ -16,11 +18,9 @@
             <div>
               {{ product.price | money_with_currency }}
             </div>
-
           </div>
         </div>
-      </div>
-
-    </a>
+      </a>
+    </div>
   </div>
 {% endfor %}

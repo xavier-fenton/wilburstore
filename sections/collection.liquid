@@ -1,10 +1,9 @@
 {% if collection.all_products_count > 0 %}
   {% render 'title' with { title: collection.title } %}
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-5 px-[80px] pb-[80px]">
-
-    {% render 'product-card' %}
-
-
+  <div class="h-full min-h-[calc(100dvh-196px)]">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-5 px-[10px] xl:px-[80px] pb-[80px] [&:nth-child(odd)]:justify-start">
+      {% render 'product-card' %}
+    </div>
   </div>
 {% else %}
   <div>

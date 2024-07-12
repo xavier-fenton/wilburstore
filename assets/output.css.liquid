@@ -894,6 +894,10 @@ video {
   height: 100vh;
 }
 
+.min-h-\[calc\(100dvh-196px\)\] {
+  min-height: calc(100dvh - 196px);
+}
+
 .w-0 {
   width: 0px;
 }
@@ -954,6 +958,10 @@ video {
   width: 100px;
 }
 
+.w-\[380px\] {
+  width: 380px;
+}
+
 .w-\[50px\] {
   width: 50px;
 }
@@ -973,6 +981,10 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-\[330px\] {
+  width: 330px;
 }
 
 .max-w-7xl {
@@ -2261,10 +2273,19 @@ input[type="radio"]:checked ~ div {
   .xl\:justify-between {
     justify-content: space-between;
   }
+
+  .xl\:px-\[80px\] {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 }
 
 .\[\&\:nth-child\(2n\)\]\:col-span-2:nth-child(2n) {
   grid-column: span 2 / span 2;
+}
+
+.\[\&\:nth-child\(2n\)\]\:justify-end:nth-child(2n) {
+  justify-content: flex-end;
 }
 
 .\[\&\:nth-child\(3n-2\)\]\:col-span-4:nth-child(3n-2) {
@@ -2279,4 +2300,12 @@ input[type="radio"]:checked ~ div {
   .lg\:\[\&\:nth-child\(3n-2\)\]\:col-start-2:nth-child(3n-2) {
     grid-column-start: 2;
   }
+}
+
+.\[\&\:nth-child\(odd\)\]\:justify-start:nth-child(odd) {
+  justify-content: flex-start;
+}
+
+.\[\&\:nth-child\(odd\)\]\:justify-end:nth-child(odd) {
+  justify-content: flex-end;
 }
