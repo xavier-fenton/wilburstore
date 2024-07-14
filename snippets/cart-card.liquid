@@ -1,65 +1,53 @@
 <div class="flex flex-row relative gap-[10px] pb-5 pt-5 w-full">
-  {% comment %}  Image {% endcomment %}
-  <div class="featuredProductImage w-[35%] h-1/2 lg:h-full lg:w-full">
-    {{ product.image | image_url: width: auto | image_tag: class: 'object-cover' }}
+  <div class="featuredProductImage w-[35%] h-[175px] lg:w-full">
+    {{ product.image | image_url: width: auto | image_tag: class: 'object-cover object-center' }}
   </div>
 
-  {% comment %}  info start  {% endcomment %}
-  <div class="pb-6  flex flex-col w-fit items-start gap-[10px] sm:gap-1 sm:px-0 px-[10px] pr-[40px]">
-    <div class="price flex flex-col gap-1 text-xs">
-      <a href="{{ product.url }}">{{ product.title }}</a>
-      <p class="">{{ product.price | money }}</p>
+  <div class="flex flex-col w-fit justify-between items-start gap-[10px] sm:gap-1 sm:px-0 px-[10px] pr-[40px]">
+    <div>
+      <div class="price flex flex-col gap-1 text-xs">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+        <p class="">{{ product.price | money }}</p>
+      </div>
+
+      <div class="quanity">
+        <ajax-cart-quantity>
+          <div class="flex flex-row items-center text-[10px]">
+            <div class="text-[10px]">Quantity:</div>
+            <!-- "Minus one" button -->
+            <a
+              data-ajax-cart-quantity-minus
+              class=" pb-1 text-bold h-8 w-8  bg-opacity-50 flex justify-center items-center text-center backdrop-blur-md "
+              href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ product.quantity | minus: 1 }}"
+            >
+              -
+            </a>
+            <!-- Quantity -->
+
+            <input
+              class="bg-transparent text-center items-center pointer-events-none text-xs w-8"
+              data-ajax-cart-quantity-input="{{ index }}"
+              name="updates[]"
+              value="{{ product.quantity }}"
+              type="number"
+              form="my-ajax-cart-form"
+            >
+
+            <!-- "Plus one" button -->
+            <a
+              data-ajax-cart-quantity-plus
+              class=" pb-1 text-bold h-8 w-8  bg-opacity-50 flex justify-center items-center text-center backdrop-blur-md "
+              href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ product.quantity | plus: 1 }}"
+            >
+              +
+            </a>
+          </div>
+        </ajax-cart-quantity>
+
+        <!-- "Remove item" button -->
+      </div>
     </div>
-
-    <div class="quanity">
-      <ajax-cart-quantity>
-        <div class="flex flex-row items-center text-[10px]">
-          <div class="text-[10px]">Quantity:</div>
-          <!-- "Minus one" button -->
-          <a
-            data-ajax-cart-quantity-minus
-            class=" pb-1 text-bold h-8 w-8  bg-opacity-50 flex justify-center items-center text-center backdrop-blur-md "
-            href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ product.quantity | minus: 1 }}"
-          >
-            -
-          </a>
-
-          <!-- Item quantity input -->
-          {% comment %} <div
-            data-ajax-cart-quantity-input="{{ index }}"
-            name="updates[]"
-            type="number"
-            form="my-ajax-cart-form"
-            class=" bg-transparent text-center items-center pointer-events-none text-xs w-8"
-          >
-            {{ product.quantity }}
-          </div> {% endcomment %}
-
-          <input 
-          class="bg-transparent text-center items-center pointer-events-none text-xs w-8"
-          data-ajax-cart-quantity-input="{{ index }}"
-          name="updates[]" 
-          value="{{ product.quantity }}" 
-          type="number" 
-          form="my-ajax-cart-form" />
-
-          <!-- "Plus one" button -->
-          <a
-            data-ajax-cart-quantity-plus
-            class=" pb-1 text-bold h-8 w-8  bg-opacity-50 flex justify-center items-center text-center backdrop-blur-md "
-            href="{{ routes.cart_change_url }}?line={{ line_item_index }}&quantity={{ product.quantity | plus: 1 }}"
-          >
-            +
-          </a>
-        </div>
-      </ajax-cart-quantity>
-
-      <!-- "Remove item" button -->
-    </div>
-    <div class="text-xs flex flex-row gap-1 pb-[10px]">
-      {% comment %} condition here confirming availibiity  {% endcomment %}
-      {% comment %} <div>Availability: </div><div class="text-gray-400">In stock</div> {% endcomment %}
-    </div>
+    <div class="text-xs flex flex-row gap-1 pb-[10px]"></div>
     <div class=" text-gray-50 text-opacity-50 flex justify-center items-center">
       <a class="text-[10px] " data-ajax-cart-request-button href="{{ product.url_to_remove }}"> Remove </a>
     </div>
