@@ -699,12 +699,12 @@ video {
   z-index: 50;
 }
 
-.z-\[2000\] {
-  z-index: 2000;
-}
-
 .z-\[100\] {
   z-index: 100;
+}
+
+.z-\[2000\] {
+  z-index: 2000;
 }
 
 .col-span-1 {
@@ -773,24 +773,16 @@ video {
   margin-top: 50px;
 }
 
-.mb-\[40px\] {
-  margin-bottom: 40px;
-}
-
-.mt-\[70px\] {
-  margin-top: 70px;
-}
-
 .mt-\[80px\] {
   margin-top: 80px;
 }
 
-.block {
-  display: block;
-}
-
 .\!block {
   display: block !important;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
@@ -889,8 +881,8 @@ video {
   height: 60%;
 }
 
-.h-\[80vh\] {
-  height: 80vh;
+.h-\[600px\] {
+  height: 600px;
 }
 
 .h-auto {
@@ -910,16 +902,8 @@ video {
   height: 100vh;
 }
 
-.h-\[500px\] {
-  height: 500px;
-}
-
-.h-\[600px\] {
-  height: 600px;
-}
-
-.h-\[755px\] {
-  height: 755px;
+.h-1\/2 {
+  height: 50%;
 }
 
 .min-h-\[calc\(100dvh-196px\)\] {
@@ -986,6 +970,10 @@ video {
   width: 380px;
 }
 
+.w-\[500px\] {
+  width: 500px;
+}
+
 .w-\[50px\] {
   width: 50px;
 }
@@ -1007,8 +995,12 @@ video {
   width: 100vw;
 }
 
-.w-\[500px\] {
-  width: 500px;
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-\[35\%\] {
+  width: 35%;
 }
 
 .max-w-7xl {
@@ -1533,11 +1525,6 @@ video {
   padding-right: 20px;
 }
 
-.px-\[40px\] {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -2056,22 +2043,6 @@ img {
   }
 }
 
-ajax-cart-product-form[processing]:after {
-  padding-top: 20px;
-  content: "";
-  display: block;
-  width: 10px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  padding: 6px;
-  background:
-    conic-gradient(from 135deg at top,currentColor 90deg, #0000 0) 0 calc(50% - 4px)/17px 8.5px,
-    radial-gradient(farthest-side at bottom left,#0000 calc(100% - 6px),currentColor calc(100% - 5px) 99%,#0000) top right/50%  50% content-box content-box,
-    radial-gradient(farthest-side at top        ,#0000 calc(100% - 6px),currentColor calc(100% - 5px) 99%,#0000) bottom   /100% 50% content-box content-box;
-  background-repeat: no-repeat;
-  animation: l11 1s infinite linear;
-}
-
 /* Make the "Add to cart" button look visually disabled while loading */
 
 ajax-cart-product-form[processing] [type='submit'] {
@@ -2163,10 +2134,6 @@ input[type="radio"]:checked ~ div {
     display: flex;
   }
 
-  .sm\:hidden {
-    display: none;
-  }
-
   .sm\:w-fit {
     width: -moz-fit-content;
     width: fit-content;
@@ -2220,20 +2187,8 @@ input[type="radio"]:checked ~ div {
     position: sticky;
   }
 
-  .md\:block {
-    display: block;
-  }
-
   .md\:grid {
     display: grid;
-  }
-
-  .md\:hidden {
-    display: none;
-  }
-
-  .md\:h-auto {
-    height: auto;
   }
 
   .md\:w-\[350px\] {
@@ -2246,10 +2201,6 @@ input[type="radio"]:checked ~ div {
 
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-col {
@@ -2278,14 +2229,6 @@ input[type="radio"]:checked ~ div {
     margin-top: 50px;
   }
 
-  .lg\:block {
-    display: block;
-  }
-
-  .lg\:\!block {
-    display: block !important;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -2294,8 +2237,16 @@ input[type="radio"]:checked ~ div {
     display: none;
   }
 
+  .lg\:h-full {
+    height: 100%;
+  }
+
   .lg\:w-\[80\%\] {
     width: 80%;
+  }
+
+  .lg\:w-full {
+    width: 100%;
   }
 
   .lg\:grid-cols-4 {
@@ -2308,10 +2259,6 @@ input[type="radio"]:checked ~ div {
 
   .lg\:p-4 {
     padding: 1rem;
-  }
-
-  .lg\:p-0 {
-    padding: 0px;
   }
 
   .lg\:px-\[40px\] {
@@ -2333,10 +2280,6 @@ input[type="radio"]:checked ~ div {
     display: block;
   }
 
-  .xl\:hidden {
-    display: none;
-  }
-
   .xl\:w-fit {
     width: -moz-fit-content;
     width: fit-content;
@@ -2350,14 +2293,14 @@ input[type="radio"]:checked ~ div {
     justify-content: space-between;
   }
 
-  .xl\:px-\[80px\] {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-
   .xl\:px-\[40px\] {
     padding-left: 40px;
     padding-right: 40px;
+  }
+
+  .xl\:px-\[80px\] {
+    padding-left: 80px;
+    padding-right: 80px;
   }
 }
 
@@ -2377,18 +2320,6 @@ input[type="radio"]:checked ~ div {
   .lg\:\[\&\:nth-child\(3n-2\)\]\:col-start-2:nth-child(3n-2) {
     grid-column-start: 2;
   }
-}
-
-.\[\&\:nth-child\(even\)\]\:col-span-2:nth-child(even) {
-  grid-column: span 2 / span 2;
-}
-
-.\[\&\:nth-child\(even\)\]\:col-start-11:nth-child(even) {
-  grid-column-start: 11;
-}
-
-.\[\&\:nth-child\(even\)\]\:col-start-1:nth-child(even) {
-  grid-column-start: 1;
 }
 
 .\[\&\:nth-child\(odd\)\]\:justify-start:nth-child(odd) {
