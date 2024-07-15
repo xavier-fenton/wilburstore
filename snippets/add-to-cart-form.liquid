@@ -80,7 +80,7 @@
     >
 
     <div class="flex flex-col">
-      <div id="variants-options" class="text-xs pl-[5px] pt-[5px] w-fit">
+      <div id="variants-options" class=" flex flex-col gap-[5px] text-xs pl-[5px] pt-[5px] w-fit">
         {% if has_multiple_options or has_multiple_variants %}
           {% for option in product.options_with_values %}
             {% assign option_name = 'option' | append: option.position %}

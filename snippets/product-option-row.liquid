@@ -1,38 +1,41 @@
-<!-- option -->
+<!-- option  -->
 
 
-<div id="variants" class="product-option-row product-option-row-option flex flex-col gap-[5px] pb-[10px]">
-  <label class="grey" for="{% if type == 'select' %}select-{{ option.name}}{% endif %}">
+
+<div class="flex flex-row gap-[5px] items-baseline product-option-row product-option-row-option">
+  <label class="grey text-[12px]" for="{% if type == 'select' %}select-{{ option.name}}{% endif %}">
     {% if option.name == "Color" %}
       Colour
     {% else %}
-      <div class="text-gray-500 text-[11px]">
-        {{ option.name }}
-      </div>
+
+      {{ option.name }}
+
     {% endif %}
+
 
 
   </label>
 
 
-  <div class="option-values flex flex-col gap-[2.5px]">
+  <div class="option-values flex text-[10px]">
 
-    {% if type == 'select' %}
+    {% if type != 'select' %}
 
-      <select name="{{ option_name }}" id="select-{{ option_name }}">
+      <select class="flex p-[5px] w-fit" name="{{ option_name }}" id="select-{{ option_name }}">
 
         {% for value in option.values %}
-          <option value="{{ value }}">{{ value }}</option>
+          <option value="{{ value }}">{{ value.name }}</option>
         {% endfor %}
-
+        
       </select>
 
     {% else %}
-      {% for variant in product.variants %}
+      {% comment %} {% for variant in product.variants %}
         {% for value in option.values %}
-          {% if value == variant.title %}
+          {% if value.name == variant.title %}
+            {{ value }}
             {% assign radio_id = 'option-' | append: option_name | append: '-' | append: value | handleize %}
-            <div class="product-option flex flex-row gap-[5px] items-center !text-xs">
+            <div class="product-option">
 
 
               <input
@@ -47,10 +50,10 @@
                 type="radio"
                 name="{{ option_name }}"
                 value="{{ value }}"
-                {% if value == selected %}
-                checked{% endif %} />
-              <label class="text-[10px]" for="{{ radio_id }}">
+                {% if value == selected %}checked{% endif %}>
+              <label for="{{ radio_id }}">
                 {{ value }}
+
 
 
               </label>
@@ -58,8 +61,10 @@
             </div>
           {% endif %}
         {% endfor %}
-      {% endfor %}
+      {% endfor %} {% endcomment %}
+      No Variants
     {% endif %}
+
 
 
   </div>
