@@ -3,7 +3,7 @@
 
 
 <div class="flex flex-row gap-[5px] items-baseline product-option-row product-option-row-option">
-  <label class="grey text-[12px]" for="{% if type == 'select' %}select-{{ option.name}}{% endif %}">
+  <label class="grey text-[10px] lg:text-[12px]" for="{% if type == 'select' %}select-{{ option.name}}{% endif %}">
     {% if option.name == "Color" %}
       Colour
     {% else %}
@@ -17,7 +17,7 @@
   </label>
 
 
-  <div class="option-values flex text-[10px]">
+  <div class="option-values flex text-[8px] lg:text-[10px]">
 
     {% if type != 'select' %}
 
