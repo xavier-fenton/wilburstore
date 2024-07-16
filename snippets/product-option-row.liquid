@@ -19,10 +19,10 @@
 
   <div class="option-values flex text-[8px] lg:text-[10px]">
 
-    {% if type != 'select' %}
+    {% if type == 'radio' %}
 
       <select class="flex p-[5px] w-fit" name="{{ option_name }}" id="select-{{ option_name }}">
-
+        
         {% for value in option.values %}
           <option value="{{ value }}">{{ value.name }}</option>
         {% endfor %}

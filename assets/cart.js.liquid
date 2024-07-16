@@ -1,73 +1,36 @@
-document.addEventListener('DOMContentLoaded',function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-  let addToCartFormSelector = "#add-to-cart-form",
-     productOptionsSelector = addToCartFormSelector + " [name*=option]";
-  
-  let productForm = {
+  const addToCartFormSelector = "#add-to-cart-form";
 
+  const productForm = {
     onProductOptionChanged: function (event) {
-
-      // console.log('change 1.0');
-   
-      let $form = document.querySelector(addToCartFormSelector);
-      let selectedVariant = productForm.getActiveVariant($form);
-      
-      var formChangeEvent = new CustomEvent('form:change', { detail: selectedVariant });
-        $form.dispatchEvent(formChangeEvent);
-
-
+      const form = document.querySelector(addToCartFormSelector);
+      const selectedVariant = productForm.getActiveVariant(form);
+      const formChangeEvent = new CustomEvent('form:change', { detail: selectedVariant });
+      form.dispatchEvent(formChangeEvent);
     },
 
-    getActiveVariant: function ($form, newForm) {
-      let formEl = document.querySelector("#add-to-cart-form"),
-      variants = JSON.parse(decodeURIComponent(formEl.dataset.variants));
-    
-      // formInlineData = $form.serializeArray(); // removed j query
-     
-      formInlineData = new URLSearchParams(
-        Array.from(new FormData(formEl))
-      ).toString(),
+    getActiveVariant: function (form) {
+      const formEl = document.querySelector(addToCartFormSelector);
+      const variants = JSON.parse(decodeURIComponent(formEl.dataset.variants));
+      const formData = new FormData(formEl);
 
-      formOptions = {
-        option1: null,
-        option2: null,
-        option3: null,
-      },
+      const formOptions = {
+        option1: formData.get('option1') || null,
+        option2: formData.get('option2') || null,
+        option3: formData.get('option3') || null,
+      };
 
-      selectedVariant = null,
-      selectedVariantMax = null;
+      let selectedVariant = null;
 
-      // Initialize an empty array to store objects
-      let objectsArray = [];
-      let keyValuePairs = formInlineData.split("&");
-      // Iterate over the key-value pairs and create objects
-      keyValuePairs.forEach((pair) => {
-        const [key, value] = pair.split("=");
-        const obj = {
-          name: key, // Add name property
-          value: value, // Add value property
-        };
-        objectsArray.push(obj);
-      });
-
-      // console.log(formOptions);
-      // console.log(objectsArray);
-
-      objectsArray.forEach(function (item, index) {
-        if (item.name.indexOf("option") !== -1) {
-          formOptions[item.name] = item.value;
-        }
-      });
-
-      variants.forEach(function (variant) {
+      variants.forEach((variant) => {
         if (
           variant.option1 === formOptions.option1 &&
           variant.option2 === formOptions.option2 &&
           variant.option3 === formOptions.option3
         ) {
           selectedVariant = variant;
-          selectedVariantMax = variant.inventory_quantity;
-          return false; // Exiting the loop early since the variant is found
+          return false; // Exit loop early since variant is found
         }
       });
 
@@ -75,80 +38,57 @@ document.addEventListener('DOMContentLoaded',function () {
     },
 
     validate: function (event) {
-
-      // console.log('validate 2.13')
-     
-
-      let $form = this;
-       
-        selectedVariant = productForm.getActiveVariant($form),
-        hasVariant = selectedVariant !== null,
-        canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0,
-        $id = document.querySelector(".js-variant-id"),
-        $quantity = document.querySelector(".js-quantity-total"),
-        $addToCartButton = document.querySelector("#add-to-cart-button"),
-        $maxQuantity = selectedVariant.inventory_quantity;
-
-    
+      const form = this;
+      const selectedVariant = productForm.getActiveVariant(form);
+      const hasVariant = selectedVariant !== null;
+      const canAddToCart = hasVariant && selectedVariant.inventory_quantity > 0;
+      const id = document.querySelector(".js-variant-id");
+      const quantity = document.querySelector(".js-quantity-total");
+      const addToCartButton = document.querySelector("#add-to-cart-button");
+      const maxQuantity = selectedVariant.inventory_quantity;
       if (canAddToCart) {
-        $id.value = selectedVariant.id;
-        $addToCartButton.disabled = false;
-        $quantity.dataset.max = $maxQuantity;
+        id.value = selectedVariant.id;
+        addToCartButton.disabled = false;
+        quantity.dataset.max = maxQuantity;
       } else {
-        $id.value = 'null'; 
-        $addToCartButton.disabled = true; 
+        id.value = 'null';
+        addToCartButton.disabled = true;
       }
     },
 
     init: function () {
- 
-      // $(document).on( "change", productOptionsSelector, productForm.onProductOptionChanged ); 
-      // $(document).on('form:change', addToCartFormSelector, productForm.validate)    
-
-      // console.log('init 1.2')
-      document.addEventListener('change', productForm.onProductOptionChanged )
-      document.addEventListener('change', function(event) {
-       productForm.validate( event);
-    });
-
-    }
-
-}
-
-  productForm.init();
-
-  // Quanity
-
-  
-
-  let plus = document.querySelector(".js-quantity-add");
-  let minus = document.querySelector(".js-quantity-minus");
-  let quantity = document.querySelector(".js-quantity-total");
-  let quantityHidden = document.querySelector(".js-hidden-quantity");
-  let currentCount = 1;
-
-  let add = () => {
-
-    let max = quantity.dataset.max;
-    if (currentCount < max) {
-      currentCount += 1;
-      quantity.dataset.current = currentCount;
-      quantity.innerHTML = currentCount;
-      quantity.innerHTML = currentCount;
-      quantityHidden.value = currentCount;
-      // console.log(quantityHidden);
+      document.addEventListener('change', productForm.onProductOptionChanged);
+      document.addEventListener('change', productForm.validate);
     }
   };
 
-  let reduce = () => {
-    let max = quantity.dataset.max;
+  productForm.init();
 
+  // Quantity control
+  const plus = document.querySelector(".js-quantity-add");
+  const minus = document.querySelector(".js-quantity-minus");
+  const quantity = document.querySelector(".js-quantity-total");
+  const quantityHidden = document.querySelector(".js-hidden-quantity");
+  let currentCount = 1;
+
+  const updateQuantity = () => {
+    quantity.dataset.current = currentCount;
+    quantity.innerHTML = currentCount;
+    quantityHidden.value = currentCount;
+  };
+
+  const add = () => {
+    const max = parseInt(quantity.dataset.max);
+    if (currentCount < max) {
+      currentCount += 1;
+      updateQuantity();
+    }
+  };
+
+  const reduce = () => {
     if (currentCount > 1) {
-      currentCount = currentCount - 1;
-      quantity.dataset.current = currentCount;
-      quantity.innerHTML = currentCount;
-      quantity.innerHTML = currentCount;
-      quantityHidden.value = currentCount;
+      currentCount -= 1;
+      updateQuantity();
     }
   };
 
@@ -160,79 +100,35 @@ document.addEventListener('DOMContentLoaded',function () {
     minus.addEventListener("click", reduce);
   }
 
+  // Ajax cart request end listener
+  document.addEventListener('liquid-ajax-cart:request-end', event => {
+    const { requestState } = event.detail;
+    if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+      document.body.classList.add('js-show-ajax-cart');
+    }
+  });
 
-});
+  // Cart functionality
+  const cart = document.querySelector('.my-cart');
+  const cartBtns = document.querySelectorAll('.cart-btn');
+  let cartState = false;
 
-document.addEventListener('liquid-ajax-cart:request-end', event => {
-  const {requestState} = event.detail;
+  const toggleCart = () => {
+    cartState = !cartState;
+    cart.classList.toggle('cart-open', cartState);
+    document.body.classList.toggle('dim', cartState);
+  };
 
-  // If the "add to cart" request is successful
-  if (requestState.requestType === 'add' && requestState.responseData?.ok) {
+  cartBtns.forEach((btn) => {
+    btn.addEventListener('mousedown', toggleCart);
+  });
 
-    // Add the CSS class to the "body" tag
-    document.body.classList.add('js-show-ajax-cart');
-  }
-});
-
-
-document.addEventListener('DOMContentLoaded',function () {
-
-  let cart = document.querySelector('.my-cart');
-  let bodyWrap = document.querySelectorAll('.body-wrap')
-  let cartBtns = document.querySelectorAll('.cart-btn');
-  let cartState = false ;
-
+  // Responsive height update
   let winHeight = window.innerHeight;
-  document.documentElement.style.setProperty('--winHeight', winHeight + 'px');
+  document.documentElement.style.setProperty('--winHeight', `${winHeight}px`);
 
-document.addEventListener('resize', ()=> {
-  winHeight = window.innerHeight;
-  document.documentElement.style.setProperty('--winHeight', winHeight + 'px');
-})
-
-
-
-
-     let closeCart= ()=> {
-      
-      cart.classList.remove('cart-open')
-      document.body.classList.remove('dim')
-      
-    };
-
-    let openCart= ()=> {
-  
-      cart.classList.add('cart-open')
-      document.body.classList.add('dim')
-
-    };
-
-
-
-    cartBtns.forEach( (i) => {
-      i.addEventListener('mousedown', ()=> {  
-
-        
-        
-        if(cartState){
-   
-
-          cartState = false;
-          closeCart();
-        
-          
-        } else { 
-        
-          cartState = true;
-          openCart();
-
-        }
-  
-      });
-  
-    })
-
-    
-    })
-
-// btn
+  window.addEventListener('resize', () => {
+    winHeight = window.innerHeight;
+    document.documentElement.style.setProperty('--winHeight', `${winHeight}px`);
+  });
+});
