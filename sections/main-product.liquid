@@ -1,13 +1,13 @@
 <div class="flex flex-col mt-[80px] px-[10px]  lg:mt-[50px] xl:px-[40px] mb-[50px] min-h-[calc(100dvh-196px)]">
   <div class="grid md:grid-cols-2 xl:grid-cols-3 grid-cols-1  gap-2  md:p-2  p-0">
-    <div class="h-fit hidden lg:hidden xl:block lg:sticky top-[50px] p-0 lg:p-4">
+    <div class="h-fit hidden lg:hidden xl:block lg:sticky top-[50px] p-0 lg:pt-0 lg:px-4">
     {% for url in product.collections %}
       <a class="hover:underline" href="{{ url.url }}">Back</a>
     {% endfor %}
   </div>
     <div class="no-scrollbar post-wrapper transition-all w-full flex flex-col justify-center items-center gap-2 overflow-y-scroll">
       {% for image in product.images %}
-        {{ image | image_url: height: 500 | image_tag: class: 'h-[600px] w-[500px]' }}
+        <img class=" h-full w-full lg:h-[600px] lg:w-[500px]" src="{{  image | image_url  }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy" />
       {% endfor %}
     </div>
 

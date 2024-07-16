@@ -1,15 +1,22 @@
 {% comment %} [&:nth-child(3n-2)] {% endcomment %}
-<div class="px-[20px] pt-[50px] sm:flex sm:flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+<div class="min-h-[calc(100dvh-196px)] pb-[20px] px-[20px] pt-[50px] flex flex-col md:grid md:grid-cols-4 lg:grid-cols-4 gap-[20px]">
   {% for collection in collections %}
-    <div class="col-span-2 [&:nth-child(2n)]:col-span-2 [&:nth-child(3n-2)]:col-span-4 [&:nth-child(3n-2)]:col-end-4 lg:[&:nth-child(3n-2)]:col-start-2">
+    <div class="col-span-2 [&:nth-child(2n)]:col-span-2 [&:nth-child(3n-2)]:col-span-4 [&:nth-child(3n-2)]:col-end-4 md:[&:nth-child(3n-2)]:col-start-2 lg:[&:nth-child(3n-2)]:col-start-2">
       <div class="flex flex-col-reverse pb-[20px]">
         <div class="pt-[10px] pl-[10px] !text-[10px]">{{- collection.title | link_to: collection.url }}</div>
         {% if collection.featured_image %}
-          {{ collection.featured_image | image_url: height: 500
-          | image_tag: class: ' object-cover object-center aspect-[1/1.4]' | link_to: collection.url }}
+          <a href="{{ collection.url }}">
+            <img
+              class="object-cover object-center aspect-[1/1.4]"
+              src="{{  collection.featured_image | image_url  }}"
+              width="{{ collection.featured_image.width }}"
+              height="{{ collection.featured_image.height }}"
+              loading="lazy"
+            >
+          </a>
         {% else %}
           <div>
-            <img src="{{ 'example.jpg' | asset_url }}">
+            <img src="{{ 'example.jpg' | asset_url }}" loading="lazy">
           </div>
         {% endif %}
       </div>
