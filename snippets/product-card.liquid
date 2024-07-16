@@ -1,12 +1,12 @@
 {% for product in collection.products %}
   <div class="flex w-full justify-center md:[&:nth-child(odd)]:justify-end md:justify-start lg:justify-start lg:[&:nth-child(odd)]:justify-end">
-    <div class="flex flex-col justify-end h-full w-[380px]">
+    <div class="flex flex-col justify-end h-full w-fit">
       <a href="{{ product.url }}">
         <div class="flex flex-col">
           {% if product.featured_image %}
             <div class="">
               <img
-                class="object-cover object-center aspect-[1/1.4] h-full w-full lg:h-[532px] lg:w-[380px]"
+                class="object-cover object-center aspect-[1/1.4] h-full w-full lg:h-[810px] lg:w-[540px]"
                 src="{{  product.featured_image | image_url  }}"
                 width="{{ image.width }}"
                 height="{{ image.height }}"
