@@ -4,9 +4,6 @@
   </div>
 
   <div class="flex sm:items-center flex-col sm:flex sm:flex-row gap-2 w-fit">
-    <div class="hover:underline">
-      <a href="/blogs">Blog/Archive</a>
-    </div>
     {% for page in pages -%}
       <div class="hover:underline">{{ page.title | link_to: page.url }}</div>
     {%- endfor %}
