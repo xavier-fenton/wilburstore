@@ -5,7 +5,7 @@
       <a class="hover:underline" href="{{ url.url }}">Back</a>
     {% endfor %}
   </div>
-    <div class="no-scrollbar post-wrapper transition-all md:w-full xl:w-fit flex flex-col  gap-2 overflow-y-scroll">
+    <div class="no-scrollbar post-wrapper transition-all w-full flex flex-col justify-center items-center gap-2 overflow-y-scroll">
       {% for image in product.images %}
         {{ image | image_url: height: 500 | image_tag: class: 'h-[600px] w-[500px]' }}
       {% endfor %}

@@ -43,3 +43,14 @@ function toggleMenuDueToSize() {
 
 window.addEventListener('resize', toggleMenuDueToSize)
 
+document.addEventListener('DOMContentLoaded', function () {
+  const favicon = document.getElementById("favicon")
+  let hrefString = favicon.href.toString()
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // dark mod
+    favicon.href = hrefString.replace('black', 'white');
+  } else favicon.href = hrefString.replace('white', 'black');
+
+})
+
+
