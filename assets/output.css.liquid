@@ -881,10 +881,6 @@ video {
   height: 50px;
 }
 
-.h-\[600px\] {
-  height: 600px;
-}
-
 .h-auto {
   height: auto;
 }
@@ -970,14 +966,6 @@ video {
   width: 380px;
 }
 
-.w-\[500px\] {
-  width: 500px;
-}
-
-.w-\[50px\] {
-  width: 50px;
-}
-
 .w-auto {
   width: auto;
 }
@@ -993,10 +981,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .max-w-7xl {
@@ -1553,11 +1537,6 @@ video {
   padding-bottom: 10px;
 }
 
-.px-\[40px\] {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -1680,10 +1659,6 @@ video {
 
 .pt-\[5px\] {
   padding-top: 5px;
-}
-
-.pb-\[40px\] {
-  padding-bottom: 40px;
 }
 
 .text-center {
@@ -2150,10 +2125,6 @@ input[type="radio"]:checked ~ div {
     flex-direction: row;
   }
 
-  .sm\:flex-col {
-    flex-direction: column;
-  }
-
   .sm\:items-center {
     align-items: center;
   }
@@ -2190,32 +2161,12 @@ input[type="radio"]:checked ~ div {
     position: sticky;
   }
 
-  .md\:block {
-    display: block;
-  }
-
   .md\:grid {
     display: grid;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:w-\[350px\] {
     width: 350px;
-  }
-
-  .md\:w-full {
-    width: 100%;
-  }
-
-  .md\:w-1 {
-    width: 0.25rem;
-  }
-
-  .md\:w-1\/2 {
-    width: 50%;
   }
 
   .md\:grid-cols-2 {
@@ -2224,10 +2175,6 @@ input[type="radio"]:checked ~ div {
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .md\:flex-col {
-    flex-direction: column;
   }
 
   .md\:items-center {
@@ -2265,10 +2212,6 @@ input[type="radio"]:checked ~ div {
     margin-top: 50px;
   }
 
-  .lg\:block {
-    display: block;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -2277,24 +2220,20 @@ input[type="radio"]:checked ~ div {
     display: none;
   }
 
-  .lg\:h-\[100dvh\] {
-    height: 100dvh;
+  .lg\:h-\[532px\] {
+    height: 532px;
   }
 
   .lg\:h-\[600px\] {
     height: 600px;
   }
 
-  .lg\:h-\[500px\] {
-    height: 500px;
+  .lg\:w-\[380px\] {
+    width: 380px;
   }
 
-  .lg\:h-\[532px\] {
-    height: 532px;
-  }
-
-  .lg\:h-full {
-    height: 100%;
+  .lg\:w-\[500px\] {
+    width: 500px;
   }
 
   .lg\:w-\[80\%\] {
@@ -2305,14 +2244,6 @@ input[type="radio"]:checked ~ div {
     width: 100%;
   }
 
-  .lg\:w-\[500px\] {
-    width: 500px;
-  }
-
-  .lg\:w-\[380px\] {
-    width: 380px;
-  }
-
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2321,17 +2252,8 @@ input[type="radio"]:checked ~ div {
     justify-content: flex-start;
   }
 
-  .lg\:justify-between {
-    justify-content: space-between;
-  }
-
   .lg\:p-4 {
     padding: 1rem;
-  }
-
-  .lg\:px-\[40px\] {
-    padding-left: 40px;
-    padding-right: 40px;
   }
 
   .lg\:px-4 {
@@ -2339,8 +2261,9 @@ input[type="radio"]:checked ~ div {
     padding-right: 1rem;
   }
 
-  .lg\:pt-\[60px\] {
-    padding-top: 60px;
+  .lg\:px-\[40px\] {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .lg\:pb-\[40px\] {
@@ -2349,6 +2272,10 @@ input[type="radio"]:checked ~ div {
 
   .lg\:pt-0 {
     padding-top: 0px;
+  }
+
+  .lg\:pt-\[60px\] {
+    padding-top: 60px;
   }
 
   .lg\:text-\[10px\] {
@@ -2369,21 +2296,8 @@ input[type="radio"]:checked ~ div {
     display: block;
   }
 
-  .xl\:h-\[100dvh\] {
-    height: 100dvh;
-  }
-
-  .xl\:w-fit {
-    width: -moz-fit-content;
-    width: fit-content;
-  }
-
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .xl\:justify-between {
-    justify-content: space-between;
   }
 
   .xl\:px-\[40px\] {
@@ -2425,10 +2339,6 @@ input[type="radio"]:checked ~ div {
   justify-content: flex-start;
 }
 
-.\[\&\:nth-child\(odd\)\]\:justify-end:nth-child(odd) {
-  justify-content: flex-end;
-}
-
 @media (min-width: 768px) {
   .md\:\[\&\:nth-child\(odd\)\]\:justify-end:nth-child(odd) {
     justify-content: flex-end;
@@ -2436,10 +2346,6 @@ input[type="radio"]:checked ~ div {
 }
 
 @media (min-width: 1024px) {
-  .lg\:\[\&\:nth-child\(odd\)\]\:justify-start:nth-child(odd) {
-    justify-content: flex-start;
-  }
-
   .lg\:\[\&\:nth-child\(odd\)\]\:justify-end:nth-child(odd) {
     justify-content: flex-end;
   }
