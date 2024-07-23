@@ -1015,6 +1015,14 @@ video {
   width: 100vw;
 }
 
+.w-\[50\%\] {
+  width: 50%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -1315,6 +1323,11 @@ video {
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
 .bg-\[\#fff\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1577,6 +1590,11 @@ video {
 .py-\[10px\] {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.px-\[40px\] {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .pb-1 {
@@ -2239,16 +2257,6 @@ input[type="radio"]:checked ~ div {
     justify-content: flex-start;
   }
 
-  .md\:object-cover {
-    -o-object-fit: cover;
-       object-fit: cover;
-  }
-
-  .md\:object-center {
-    -o-object-position: center;
-       object-position: center;
-  }
-
   .md\:px-\[40px\] {
     padding-left: 40px;
     padding-right: 40px;
@@ -2315,11 +2323,6 @@ input[type="radio"]:checked ~ div {
   .lg\:object-cover {
     -o-object-fit: cover;
        object-fit: cover;
-  }
-
-  .lg\:object-fill {
-    -o-object-fit: fill;
-       object-fit: fill;
   }
 
   .lg\:object-center {
