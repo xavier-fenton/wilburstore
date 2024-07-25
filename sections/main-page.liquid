@@ -1,4 +1,38 @@
-{% render 'title'with {title: page.title } %}
-<div class="pt-[20px] px-[20px] md:px-[40px] lg:px-[40px] min-h-[calc(100dvh-196px)] mb-[90px]">
-  {{ page.content }}
+{% render 'title' with {title: page.title } %}
+
+{% assign content_block = section.settings.body %}
+<div class="pt-[20px] px-[20px] md:px-[40px] lg:px-[40px] min-h-[calc(100dvh-196px)] mb-[90px] w-full">
+  <div class="flex justify-center items-center">
+    {% if content_block != "" %}
+      <div class="pt-[20px] h-full w-full md:w-1/2 lg:w-1/2">
+      <p>{{ content_block }}</p>
+    </div>
+    {% else %}
+       <div class="w-1/2">
+      {{ page.content }}
+    </div>
+    {% endif %}
+  </div>
 </div>
+
+
+{% schema %}
+  {
+    "name": "Content Block",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "body",
+        "label": "Text"
+      }
+    ],
+  
+    "presets": [
+      {
+        "name": " ContentBlock",
+        "category": "Content"
+      }
+    ]
+  }
+  {% endschema %}
+  

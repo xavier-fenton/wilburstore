@@ -1,0 +1,37 @@
+{% assign about_text = section.settings.body %}
+{% assign image_portrait = section.settings.image_1 %}
+{% assign image_landscape = section.settings.image_2 %}
+
+
+
+{% render 'main-about', about_text: about_text, image_portrait: image_portrait, image_landscape: image_landscape %}
+
+{% schema %}
+{
+  "name": "About Block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Portrait_Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Landscape_Image"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Text"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": " aboutBlock",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

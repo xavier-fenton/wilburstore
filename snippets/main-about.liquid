@@ -1,0 +1,31 @@
+{% render 'title' with {title: page.title } %}
+<div class="pt-[20px] px-[20px] md:px-[40px] lg:px-[40px] min-h-[calc(100dvh-196px)] mb-[90px] w-full">
+  <div class="flex flex-col justify-center items-center">
+    {% if image_landscape %}
+      <div class="flex flex-col justify-center items-center">
+        <img
+          class=""
+          src="{{  image_landscape | image_url  }}"
+          width="{{ image_landscape.width }}"
+          height="{{ image_landscape.height }}"
+          loading="lazy"
+        >
+       
+      </div>
+    {% elsif image_portrait %}
+      <div class="flex flex-col justify-center items-center w-full">
+        <img
+          class="h-full w-full md:w-1/2 lg:w-1/2"
+          src="{{  image_portrait | image_url  }}"
+          width="{{ image_landscape.width }}"
+          height="{{ image_landscape.height }}"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+    <div class="pt-[20px] h-full w-full md:w-1/2 lg:w-1/2">
+      <div class="text-[12px] uppercase pb-[10px]">{{ page.title }}</div>
+      <p>{{ about_text }}</p>
+    </div>
+  </div>
+</div>
