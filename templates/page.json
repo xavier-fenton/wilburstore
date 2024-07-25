@@ -12,7 +12,7 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "body": "<p>wilburhsu@hello.com<\/p><p>Contact No: +64 21 123 4567<\/p><p>@wilburhsu<\/p>"
+        "body": ""
       }
     }
   },
