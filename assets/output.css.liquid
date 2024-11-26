@@ -813,10 +813,6 @@ video {
   margin-top: 80px;
 }
 
-.mt-\[100px\] {
-  margin-top: 100px;
-}
-
 .\!block {
   display: block !important;
 }
@@ -1728,6 +1724,10 @@ video {
   text-align: center;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .align-middle {
   vertical-align: middle;
 }
@@ -1748,6 +1748,10 @@ video {
 
 .text-\[10px\] {
   font-size: 10px;
+}
+
+.text-\[12px\] {
+  font-size: 12px;
 }
 
 .text-\[8px\] {
@@ -1777,10 +1781,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[12px\] {
-  font-size: 12px;
 }
 
 .font-bold {
@@ -2022,6 +2022,10 @@ body {
   display: none;
 }
 
+.custom-content p {
+  padding-bottom: 10px;
+}
+
 div {
   letter-spacing: 0.35px;
   color: #222;
@@ -2236,12 +2240,16 @@ input[type="radio"]:checked ~ div {
     display: grid;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:w-\[350px\] {
     width: 350px;
   }
 
-  .md\:w-1\/2 {
-    width: 50%;
+  .md\:w-\[30\%\] {
+    width: 30%;
   }
 
   .md\:grid-cols-2 {
@@ -2303,6 +2311,10 @@ input[type="radio"]:checked ~ div {
     height: 810px;
   }
 
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+
   .lg\:w-\[540px\] {
     width: 540px;
   }
@@ -2315,8 +2327,8 @@ input[type="radio"]:checked ~ div {
     width: 100%;
   }
 
-  .lg\:w-1\/2 {
-    width: 50%;
+  .lg\:w-\[30\%\] {
+    width: 30%;
   }
 
   .lg\:grid-cols-4 {
