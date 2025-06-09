@@ -56,7 +56,8 @@
           <div class="flex justify-center items-center">
             <a class="hover:underline" href="/collections">All</a>
           </div>
-          {% for collection in collections %}
+          {%  assign reverse_collection = collections |  sort: 'id' |  reverse %}
+          {% for collection in reverse_collection %}
             <div class="hover:underline w-fit flex justify-center items-center">
               {{- collection.title | link_to: collection.url }}
             </div>
@@ -91,7 +92,7 @@
         <div>
           <a class="hover:underline" href="/collections">All</a>
         </div>
-        {% for collection in collections %}
+        {% for collection in reverse_collection %}
           <div class="hover:underline">{{- collection.title | link_to: collection.url }}</div>
         {% endfor %}
       </div>
