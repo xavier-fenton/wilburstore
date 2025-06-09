@@ -1085,6 +1085,20 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-appear {
+  animation: appear 1s ease-in-out;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -1520,10 +1534,6 @@ video {
 
 .p-\[5px\] {
   padding: 5px;
-}
-
-.p-\[10px\] {
-  padding: 10px;
 }
 
 .px-0 {
@@ -2355,10 +2365,6 @@ input[type="radio"]:checked ~ div {
 
   .lg\:p-4 {
     padding: 1rem;
-  }
-
-  .lg\:p-2 {
-    padding: 0.5rem;
   }
 
   .lg\:px-\[40px\] {
