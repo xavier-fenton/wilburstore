@@ -1,9 +1,13 @@
+{%  assign first_collection = collections | sort: 'id' |  reverse | first  %} %}
+
 <div class="h-[100dvh]  px-[10px] pt-[100px] md:pt-[50px] lg:pt-[50px] mb-[100px] md:mb-[160px] lg:mb-0 flex justify-center items-center">
   <div class="h-full w-full flex justify-center items-center">
-    <a class="h-full w-full" href="/collections/my-fair-princess">
+    <a class="h-full w-full" href="{{  first_collection.url}}">
       <img
+        width=""
+        height=""
         class="object-scale-down lg:object-cover lg:object-center"
-        src="{{ 'Landing.jpg' | asset_url }}"
+        src="{{ first_collection.featured_image | image_url }}"
         loading="lazy"
       >
     </a>
