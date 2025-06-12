@@ -13,6 +13,16 @@
                 loading="lazy"
               >
             </div>
+            {% else %}
+            <div class="">
+              <img
+                class="object-cover object-center aspect-[1/1.4] h-full w-full lg:h-[810px] lg:w-[540px]"
+                src="{{ 'wilburlogo2023.png' |  asset_url  }}"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                loading="lazy"
+              >
+            </div>
           {% endif %}
 
           <div class="flex justify-between">
