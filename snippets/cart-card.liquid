@@ -1,6 +1,11 @@
 <div class="flex flex-row relative gap-[10px] pb-5 pt-5 w-full">
   <div class="featuredProductImage w-[35%] h-[175px] lg:w-full">
-    {{ product.image | image_url: width: auto | image_tag: class: 'object-cover object-center' }}
+    {% if product.image %}
+      {{ product.image | image_url: width: auto | image_tag: class: 'object-cover object-center' }}
+    {% else %}
+      <img class="object-scale-down" src="{{ 'wilburlogo2023.png' |  asset_url  }}" width="" height="" loading="lazy" />
+    {% endif %}
+    
   </div>
 
   <div class="flex flex-col w-fit justify-between items-start gap-[10px] sm:gap-1 sm:px-0 px-[10px] pr-[40px]">
@@ -51,13 +56,13 @@
     <div class=" text-gray-50 text-opacity-50 flex justify-center items-center">
       <a class="text-[10px] " data-ajax-cart-request-button href="{{ product.url_to_remove }}"> Remove </a>
     </div>
+  </div><!-- Item error messages -->
+  <div class="w-full p-2  absolute bottom-0 left-0 right-0">
+    <div
+      class=" caption bg-orange-400 flex justify-center items-center rounded-md z-30 text-sm px-[10px]"
+      data-ajax-cart-errors="{{ product.key }}"
+    ></div>
   </div>
 </div>
 
-<!-- Item error messages -->
-<div class="w-full p-2  absolute bottom-0 left-0 right-0">
-  <div
-    class=" caption bg-orange-400 flex justify-center items-center rounded-md z-30  "
-    data-ajax-cart-errors="{{ product.key }}"
-  ></div>
-</div>
+
