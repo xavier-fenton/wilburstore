@@ -1,11 +1,30 @@
 {% comment %} Todo: Create a special tag or an upload that is specific for a new collections image on the landing page {% endcomment %}
 
+{%  assign reverse_collection = collections |  sort: 'id' |  reverse %}
+
+
+{% assign latest_collection_image = reverse_collection.first.metafields.custom.   collection_landing_image.value %}
+
+
 <div class="animate-appear offset-2 h-[100vh] pt-[50px] w-full">
-      <img
-        width=""
-        height=""
-        class="animate-appear object-cover"
-        src="{{ '2502LandingImage.jpg'| asset_url }}"
-        loading="lazy"
-      >
+        <a class="h-full w-full" href="{{  reverse_collection.first.url }}">
+          {% if latest_collection_image %}
+            <img
+              width=""
+              height=""
+              class="animate-appear object-cover"
+              src="{{ latest_collection_image |  image_url  }}"
+              loading="lazy"
+            >
+          {% else %}
+              <img
+                width=""
+                height=""
+                class="animate-appear object-cover"
+                src="{{ 'wilburlogo2023.png' |  asset_url  }}"
+                loading="lazy"
+            >
+          {% endif %}
+          
+        </a>
 </div>
