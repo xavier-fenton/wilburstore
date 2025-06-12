@@ -1,16 +1,34 @@
-{% comment %} Todo: Create a special tag or an upload that is specific for a new collections image on the landing page {% endcomment %}
-{%  assign first_collection = collections | sort: 'id' |  reverse | first  %}
+{% comment %}
 
-<div class="animate-appear h-[100dvh]  px-[10px] pt-[100px] md:pt-[50px] lg:pt-[50px] mb-[100px] md:mb-[160px] lg:mb-0 flex justify-center items-center">
-  <div class="h-full w-full flex justify-center items-center">
-    <a class="h-full w-full" href="{{  first_collection.url}}">
-      <img
-        width=""
-        height=""
-        class="animate-appear object-scale-down lg:object-cover lg:object-center"
-        src="{{ '2502LandingImage.jpg'| asset_url }}"
-        loading="lazy"
-      >
-    </a>
-  </div>
+  Uses metafield to check for landing image
+
+{% endcomment %}
+
+{%  assign reverse_collection = collections |  sort: 'id' |  reverse %}
+
+
+{% assign latest_collection_image = reverse_collection.first.metafields.custom.   collection_landing_image.value %}
+
+
+<div class="animate-appear offset-2 h-[100vh] pt-[50px] w-full">
+        <a class="h-full w-full" href="{{  reverse_collection.first.url }}">
+          {% if latest_collection_image %}
+            <img
+              width=""
+              height=""
+              class="animate-appear object-cover"
+              src="{{ latest_collection_image |  image_url  }}"
+              loading="lazy"
+            >
+          {% else %}
+              <img
+                width=""
+                height=""
+                class="animate-appear object-cover"
+                src="{{ 'wilburlogo2023.png' |  asset_url  }}"
+                loading="lazy"
+            >
+          {% endif %}
+          
+        </a>
 </div>

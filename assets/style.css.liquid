@@ -72,7 +72,7 @@ img {
 .my-cart {
   position: fixed;
   right: -1000px;
-  top: 7px;
+  top: 0px;
   cursor: pointer;
   width: calc(400px);
   transition: ease all 0.3s;
@@ -86,7 +86,7 @@ img {
   width: calc(400px);
   overflow: scroll;
   transition: right 0.3s;
-  right: 7px;
+  right: 0px;
 }
 
 @media only screen and (max-width: 568px) {
@@ -107,7 +107,7 @@ img {
     
   .cart-open{
 
-    width: calc( 100vw  );
+    width: calc(100vw);
     height: calc(var(--winHeight) - 40px );
     overflow: scroll;
  
@@ -143,13 +143,20 @@ html.js-ajax-cart-processing .my-cart__items {
 
 /* Show a loading indicator */
 html.js-ajax-cart-processing .my-cart__items:after {
-  content: 'Loading';
+  content: 'Loading..';
   display: block;
   font-size: smaller;
   padding-top: 20px;
+  width: fit-content;
+  font-size: 12px;
+  clip-path: inset(0 3ch 0 0);
+  animation: l4 1s steps(4) infinite;
 
 }
 /* 
 input[type="radio"]:checked ~ div {
   color: black;
 } */
+
+
+@keyframes l4 {to{clip-path: inset(0 -1ch 0 0)}}
