@@ -1,3 +1,4 @@
+
 <div class="animate-appear flex flex-col mt-[80px] px-[10px]  lg:mt-[50px] xl:px-[40px] mb-[50px] min-h-[calc(100dvh-196px)]">
   <div class="grid md:grid-cols-2 xl:grid-cols-[1fr_2fr_1fr] grid-cols-1  gap-2">
     <div class="h-fit hidden lg:hidden xl:block lg:sticky top-[50px] p-0 lg:pt-0">
@@ -6,8 +7,13 @@
     {% endfor %}
   </div>
     <div class="no-scrollbar post-wrapper transition-all w-full flex flex-col justify-center items-center gap-2 overflow-y-scroll">
+
       {% for image in product.images %}
-        <img class=" h-full w-full" src="{{  image | image_url  }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy" />
+        {% if image %}
+          <img class=" h-full w-full" src="{{  image | image_url  }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy" />
+        {% else %}
+        <img class="object-scale-down object-center aspect-[1/1.4] h-full w-full lg:h-[810px] lg:w-[540px]" src="{{ 'wilburlogo2023.png' |  asset_url  }}" width="" height="" loading="lazy" />
+        {% endif %}
       {% endfor %}
     </div>
 
