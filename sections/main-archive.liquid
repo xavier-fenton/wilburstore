@@ -1,5 +1,25 @@
   {% render 'title' with { title: page.title } %}
 
-  <div class="grid grid-cols-3 gap-5">
-    {{ page.content }}
+
+  {% assign gallery = pages['archive'].metafields.custom.archive_gallery.value %}
+
+  {% if gallery %}
+    <div class="h-100vh px-[20px] lg:px-[40px] columns-1 gap-4 md:columns-2 lg:columns-3">
+      
+      {% for file in gallery %}
+        <img class="pb-[1rem]" height="" width="" src="{{ file | image_url }}" alt="">
+      {% endfor %}
+
     </div>
+  {% else %}
+    {% comment %} Place Holder {% endcomment %}
+  <div class="h-100vh">
+      
+        <img class="object-cover" height="" width="" src="{{ 'WilburName.jpg' | asset_url }}" alt="">
+
+    </div>
+    
+  {% endif %}
+  
+  
+
