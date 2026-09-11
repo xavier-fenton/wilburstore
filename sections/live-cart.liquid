@@ -7,10 +7,7 @@
     <div class="my-cart__items " data-ajax-cart-section-scroll>
       <div class="text-xs uppercase">Summary</div>
       {% for line_item in cart.items %}
-        {%
-          render 'cart-card' with { product: line_item
-          , index: forloop.index }
-        %}
+        {% render 'cart-card', product: line_item, index: forloop.index %}
       {% endfor %}
     </div>
     <div class="flex gap-2 justify-center align-middle w-full">
@@ -32,3 +29,17 @@
   "name": "My Ajax cart"
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%
+              render 'cart-card' with { product: line_item
+              , index: forloop.index }
+            %}
+  to: "{% render 'cart-card', product: line_item, index: forloop.index %}"
+  position: 438..504
+{% endcomment %}

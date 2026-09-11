@@ -19,8 +19,18 @@
 
     <div class="h-fit md:sticky top-[50px] p-0 lg:p-4">
       <ajax-cart-product-form>
-        {% render 'add-to-cart-form' with current_variant: current_variant %}
+        {% render 'add-to-cart-form' with current_variant, current_variant: current_variant %}
       </ajax-cart-product-form>
     </div>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'add-to-cart-form' with current_variant: current_variant %}"
+  to: "{% render 'add-to-cart-form' with current_variant, current_variant: current_variant
+    %}"
+  position: 1118..1204
+{%- endcomment -%}

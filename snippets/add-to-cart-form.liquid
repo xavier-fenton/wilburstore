@@ -17,7 +17,7 @@
 <!-- //---------------------- json get -------------------------------->
 {% if has_multiple_variants %}
 
- {% render 'get-variants-with-quantity-json' with product: product %} 
+ {% render 'get-variants-with-quantity-json' with product, product: product %} 
 
   {% assign variants_with_quantity_json = product.variants | json %}
   {% unless variants_with_quantity_json contains 'inventory_quantity' %}
@@ -116,3 +116,14 @@
     ${{ product.price | money_without_currency }} - Add To Cart
   </button>
 </form>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'get-variants-with-quantity-json' with product: product %}"
+  to: "{% render 'get-variants-with-quantity-json' with product, product: product
+    %}"
+  position: 487..564
+{% endcomment %}

@@ -1,4 +1,4 @@
-  {% render 'title' with { title: page.title } %}
+  {% render 'title', title: page.title %}
 
 
   {% assign gallery = pages['archive'].metafields.custom.archive_gallery.value %}
@@ -23,3 +23,13 @@
   
   
 
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'title' with { title: page.title } %}"
+  to: "{% render 'title', title: page.title %}"
+  position: 2..41
+{% endcomment %}

@@ -70,7 +70,7 @@
         <a href="/">
           <img
             class="absolute left-0 top-0 right-0 mx-auto h-[50px] w-auto object-fill object-center"
-            src="{{ 'wilburlogo2023.png' ||  asset_url }}"
+            src="{{ 'wilburlogo2023.png' | asset_url }}"
         ></a>
         {% comment %} </div> {% endcomment %}
         <div class="flex justify-end items-center">
@@ -99,3 +99,13 @@
     </div>
   </div>
 </nav>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{{ 'wilburlogo2023.png' ||  asset_url }}"
+  to: "{{ 'wilburlogo2023.png' | asset_url }}"
+  position: 2725..2763
+{% endcomment %}

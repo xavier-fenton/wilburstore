@@ -1,6 +1,6 @@
 <div class="animate-appear">
 {% if collection.all_products_count > 0 %}
-  {% render 'title' with { title: collection.title } %}
+  {% render 'title', title: collection.title %}
   <div class="flex flex-col justify-center items-center w-full pb-[20px] px-[20px]">
     <div>{{ collection.title }}</div>
   <div class="flex flex-col justify-center items-start pb-[20px] md:pb-[40px] lg:pb-[40px] py-[10px] max-w-[380px] gap-[5px]">{{ collection.description }}</div>
@@ -12,7 +12,7 @@
   </div>
 {% else %}
   <div>
-    {% render 'title' with { title: collection.title } %}
+    {% render 'title', title: collection.title %}
     <div class="h-[100dvh]">
       <div class="pl-10 pt-10">
         <p>Sorry, there are no products in this collection</p>
@@ -20,4 +20,16 @@
     </div>
   </div>
 {% endif %}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'title' with { title: collection.title } %}"
+  to: "{% render 'title', title: collection.title %}"
+  position: 74..119
+- from: "{% render 'title' with { title: collection.title } %}"
+  to: "{% render 'title', title: collection.title %}"
+  position: 665..710
+{%- endcomment -%}
